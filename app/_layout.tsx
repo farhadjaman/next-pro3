@@ -1,17 +1,18 @@
 import '../global.css';
 import 'expo-dev-client';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ThemeProvider as NavThemeProvider } from '@react-navigation/native';
 import { Stack, useSegments, router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { useEffect } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { ThemeToggle } from '~/components/ThemeToggle';
 import ListLoading from '~/components/loaders/ListLoading';
-
+import { AuthProvider, useAuth } from '~/lib/context/authContext';
 import { useColorScheme, useInitialAndroidBarSync } from '~/lib/useColorScheme';
 import { NAV_THEME } from '~/theme';
-import { AuthProvider, useAuth } from '~/lib/context/authContext';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -20,16 +21,16 @@ const MainLayout = () => {
   const segments = useSegments();
 
   useEffect(() => {
-    //@ts-ignore
     const insideApp = segments[0] === '(app)';
-    if (isLoading) <ListLoading message="Loading..." />;
 
     if (!session && !isLoading) {
       router.replace('/auth/(login)');
     } else if (session && !insideApp) {
-      router.replace('/profile');
+      router.replace('/(app)/profile');
     }
   }, [session, isLoading]);
+
+  if (isLoading) return <ListLoading message="Loading..." />;
 
   return (
     <Stack screenOptions={SCREEN_OPTIONS}>
@@ -69,19 +70,23 @@ export default function RootLayout() {
         key={`root-status-bar-${isDarkColorScheme ? 'light' : 'dark'}`}
         style={isDarkColorScheme ? 'light' : 'dark'}
       />
-      <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
-        <NavThemeProvider value={NAV_THEME[colorScheme]}>
-          <AuthProvider>
-            <MainLayout />
-          </AuthProvider>
-        </NavThemeProvider>
-      </KeyboardProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <BottomSheetModalProvider>
+          <KeyboardProvider statusBarTranslucent navigationBarTranslucent>
+            <NavThemeProvider value={NAV_THEME[colorScheme]}>
+              <AuthProvider>
+                <MainLayout />
+              </AuthProvider>
+            </NavThemeProvider>
+          </KeyboardProvider>
+        </BottomSheetModalProvider>
+      </GestureHandlerRootView>
     </>
   );
 }
 
 const SCREEN_OPTIONS = {
-  animation: 'ios_from_right', // for android
+  animation: 'ios_from_right',
 } as const;
 
 const MODAL_OPTIONS = {

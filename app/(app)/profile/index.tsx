@@ -121,13 +121,13 @@ const DATA: DataItem[] = [
     id: 'name',
     title: 'Name',
     ...(Platform.OS === 'ios' ? { value: 'Zach Nugent' } : { subTitle: 'Zach Nugent' }),
-    onPress: () => router.push('/profile/name'),
+    onPress: () => router.push('/(app)/profile/name'),
   },
   {
     id: 'username',
     title: 'Username',
     ...(Platform.OS === 'ios' ? { value: '@mrzachnugent' } : { subTitle: '@mrzachnugent' }),
-    onPress: () => router.push('/profile/username'),
+    onPress: () => router.push('/(app)/profile/username'),
   },
   ...(Platform.OS !== 'ios' ? ['Stay up to date'] : ['']),
   {
