@@ -37,7 +37,9 @@ export function BottomSheet({ snapPoints, isOpen, onClose, children }: BottomShe
       onChange={handleSheetChanges}
       enablePanDownToClose
       enableDynamicSizing={false}>
-      <BottomSheetView>{children}</BottomSheetView>
+      <BottomSheetView className="flex-1 items-center justify-center pb-8">
+        {children}
+      </BottomSheetView>
     </Sheet>
   );
 }

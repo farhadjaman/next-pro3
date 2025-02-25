@@ -1,6 +1,8 @@
 import { Icon } from '@roninoss/icons';
 import { router, Stack } from 'expo-router';
-import { Linking, Platform, View } from 'react-native';
+import { observer } from 'mobx-react-lite';
+import * as React from 'react';
+import { Platform, View } from 'react-native';
 
 import { Avatar, AvatarFallback } from '~/components/nativewindui/Avatar';
 import { Button } from '~/components/nativewindui/Button';
@@ -13,9 +15,9 @@ import {
 } from '~/components/nativewindui/List';
 import { Text } from '~/components/nativewindui/Text';
 import { cn } from '~/lib/cn';
-import { useColorScheme } from '~/lib/useColorScheme';
-
 import { useAuth } from '~/lib/context/authContext';
+import { useColorScheme } from '~/lib/useColorScheme';
+import { store } from '~/store';
 
 const SCREEN_OPTIONS = {
   title: 'Profile',
@@ -26,7 +28,34 @@ const SCREEN_OPTIONS = {
 const ESTIMATED_ITEM_SIZE =
   ESTIMATED_ITEM_HEIGHT[Platform.OS === 'ios' ? 'titleOnly' : 'withSubTitle'];
 
-export default function Profile() {
+const Profile = observer(() => {
+  const currentUser = store.currentUser;
+  const fullName = currentUser ? `${currentUser.firstName} ${currentUser.lastName}` : 'Guest';
+  const userEmail = currentUser ? currentUser.email : 'unknown@example.com';
+
+  const DATA: DataItem[] = [
+    ...(Platform.OS !== 'ios' ? ['Basic info'] : []),
+    {
+      id: 'name',
+      title: 'Name',
+      ...(Platform.OS === 'ios' ? { value: fullName } : { subTitle: fullName }),
+      onPress: () => router.push('/(app)/profile/name'),
+    },
+    {
+      id: 'email',
+      title: 'Email',
+      ...(Platform.OS === 'ios' ? { value: userEmail } : { subTitle: userEmail }),
+      onPress: () => router.push('/(app)/profile/email'),
+    },
+    ...(Platform.OS !== 'ios' ? ['Stay up to date'] : ['']),
+    {
+      id: 'notifications',
+      title: 'Notifications',
+      ...(Platform.OS === 'ios' ? { value: 'Push' } : { subTitle: 'Push' }),
+      onPress: () => router.push('/(app)/profile/notification'),
+    },
+  ];
+
   return (
     <>
       <Stack.Screen options={SCREEN_OPTIONS} />
@@ -41,7 +70,7 @@ export default function Profile() {
       />
     </>
   );
-}
+});
 
 function renderItem(info: ListRenderItemInfo<DataItem>) {
   return <Item info={info} />;
@@ -69,9 +98,17 @@ function Item({ info }: { info: ListRenderItemInfo<DataItem> }) {
 }
 
 function ListHeaderComponent() {
+  const currentUser = store.currentUser;
+  const initials =
+    currentUser && currentUser.firstName && currentUser.lastName
+      ? `${currentUser.firstName[0]}${currentUser.lastName[0]}`
+      : 'NA';
+  const fullName = currentUser ? `${currentUser.firstName} ${currentUser.lastName}` : 'Guest';
+  const username = currentUser ? currentUser.email.split('@')[0] : 'guest';
+
   return (
-    <View className="ios:pb-8 items-center pb-4  pt-8">
-      <Avatar alt="Zach Nugent's Profile" className="h-24 w-24">
+    <View className="ios:pb-8 items-center pb-4 pt-8">
+      <Avatar alt={`${fullName}'s Profile`} className="h-24 w-24">
         <AvatarFallback>
           <Text
             variant="largeTitle"
@@ -79,13 +116,13 @@ function ListHeaderComponent() {
               'font-medium text-white dark:text-background',
               Platform.OS === 'ios' && 'dark:text-foreground'
             )}>
-            ZN
+            {initials}
           </Text>
         </AvatarFallback>
       </Avatar>
       <View className="p-1" />
-      <Text variant="title1">Zach Nugent</Text>
-      <Text className="text-muted-foreground">@mrzachnugent</Text>
+      <Text variant="title1">{fullName}</Text>
+      <Text className="text-muted-foreground">{`@${username}`}</Text>
     </View>
   );
 }
@@ -115,38 +152,5 @@ type DataItem =
       onPress: () => void;
     };
 
-const DATA: DataItem[] = [
-  ...(Platform.OS !== 'ios' ? ['Basic info'] : []),
-  {
-    id: 'name',
-    title: 'Name',
-    ...(Platform.OS === 'ios' ? { value: 'Zach Nugent' } : { subTitle: 'Zach Nugent' }),
-    onPress: () => router.push('/(app)/profile/name'),
-  },
-  {
-    id: 'username',
-    title: 'Username',
-    ...(Platform.OS === 'ios' ? { value: '@mrzachnugent' } : { subTitle: '@mrzachnugent' }),
-    onPress: () => router.push('/(app)/profile/username'),
-  },
-  ...(Platform.OS !== 'ios' ? ['Stay up to date'] : ['']),
-  {
-    id: '4',
-    title: 'Notifications',
-    ...(Platform.OS === 'ios' ? { value: 'Push' } : { subTitle: 'Push' }),
-    onPress: () => router.push('/(app)/profile/notification'),
-  },
-  'Help',
-  {
-    id: '6',
-    title: 'Support',
-    ...(Platform.OS === 'ios' ? { value: 'Discord' } : { subTitle: 'Discord' }),
-    onPress: () => Linking.openURL('https://nativewindui.com/discord'),
-  },
-  {
-    id: '7',
-    title: 'About',
-    ...(Platform.OS === 'ios' ? { value: 'NativeWindUI' } : { subTitle: 'NativeWindUI' }),
-    onPress: () => Linking.openURL('https://nativewindui.com/'),
-  },
-];
+export type { DataItem };
+export default Profile;

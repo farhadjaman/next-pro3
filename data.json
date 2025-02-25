@@ -1,0 +1,105 @@
+{
+  "users": [
+    {
+      "id": "u001",
+      "firstName": "Mário",
+      "lastName": "Afonso",
+      "email": "mario.afonso@example.com",
+      "onActiveDuty": true,
+      "backgroundLocationTracking": true,
+      "userType": "user",
+      "jobsCompleted": 15,
+      "jobsCompletedWTD": 15,
+      "totalSetOfRepairs": 50,
+      "totalSetOfRepairsWTD": 15,
+      "successRate": "70%",
+      "responseRate": "80%"
+    },
+    {
+      "id": "u002",
+      "firstName": "João",
+      "lastName": "Almeida",
+      "email": "joao.almeida@example.com",
+      "onActiveDuty": false,
+      "backgroundLocationTracking": false,
+      "userType": "user",
+      "jobsCompleted": 20,
+      "jobsCompletedWTD": 5,
+      "totalSetOfRepairs": 60,
+      "totalSetOfRepairsWTD": 10,
+      "successRate": "85%",
+      "responseRate": "90%"
+    },
+    {
+      "id": "u003",
+      "firstName": "Nuno",
+      "lastName": "Anunciação",
+      "email": "nuno.anunciacao@example.com",
+      "onActiveDuty": true,
+      "backgroundLocationTracking": true,
+      "userType": "user",
+      "jobsCompleted": 10,
+      "jobsCompletedWTD": 2,
+      "totalSetOfRepairs": 30,
+      "totalSetOfRepairsWTD": 3,
+      "successRate": "60%",
+      "responseRate": "75%"
+    }
+  ],
+  "jobs": [
+    {
+      "jobId": "j101",
+      "userId": "u001",
+      "jobTitle": "Swap modules",
+      "location": "Seixal",
+      "date": "2025-02-24",
+      "status": "Action needed",
+      "notes": "Check system logs"
+    },
+    {
+      "jobId": "j102",
+      "userId": "u001",
+      "jobTitle": "Repair sensor",
+      "location": "Seixal",
+      "date": "2025-02-25",
+      "status": "Allocated",
+      "notes": "Replace sensor, run final tests"
+    },
+    {
+      "jobId": "j103",
+      "userId": "u002",
+      "jobTitle": "Check circuit boards",
+      "location": "Loulé",
+      "date": "2025-02-26",
+      "status": "Allocated",
+      "notes": "Board replacement"
+    },
+    {
+      "jobId": "j104",
+      "userId": "u002",
+      "jobTitle": "Diagnose power module",
+      "location": "Loulé",
+      "date": "2025-02-27",
+      "status": "In Progress",
+      "notes": "Power fluctuations"
+    },
+    {
+      "jobId": "j105",
+      "userId": "u003",
+      "jobTitle": "Heating Element Replacement",
+      "location": "Seixal",
+      "date": "2025-03-01",
+      "status": "Awaiting Parts",
+      "notes": "Ordered replacement parts"
+    },
+    {
+      "jobId": "j106",
+      "userId": "u003",
+      "jobTitle": "Monthly Maintenance Visit",
+      "location": "Seixal HQ",
+      "date": "2025-03-02",
+      "status": "Scheduled",
+      "notes": "Routine system check"
+    }
+  ]
+}

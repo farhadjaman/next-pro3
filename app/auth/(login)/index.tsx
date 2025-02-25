@@ -12,7 +12,6 @@ import { Button } from '~/components/nativewindui/Button';
 import { Form, FormItem, FormSection } from '~/components/nativewindui/Form';
 import { Text } from '~/components/nativewindui/Text';
 import { TextField } from '~/components/nativewindui/TextField';
-
 import { useAuth } from '~/lib/context/authContext';
 
 const LOGO_SOURCE = {
@@ -35,6 +34,7 @@ export default function LoginScreen() {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     const response = await signIn(data.email, data.password);
+
     setLoading(false);
     if (!response.success) {
       Alert.alert('Failed to sign in:', response.message);
