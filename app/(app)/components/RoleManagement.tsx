@@ -1,7 +1,6 @@
-import { View } from 'react-native';
-import { Text } from '~/components/nativewindui/Text';
-import { BottomSheet } from '~/components/sheets/BottomSheet';
 import { ListRenderItemInfo } from '@shopify/flash-list';
+import data from 'data.json';
+
 import {
   ESTIMATED_ITEM_HEIGHT,
   List,
@@ -9,6 +8,11 @@ import {
   ListItem,
   ListSectionHeader,
 } from '~/components/nativewindui/List';
+import { BottomSheet } from '~/components/sheets/BottomSheet';
+import { buildRoleData } from '~/helpers/buildRoleUserData';
+import { User } from '~/store';
+
+const DATA = buildRoleData(data.users as User[]);
 
 type RoleManagementSheetProps = {
   isOpen?: boolean;
@@ -17,12 +21,13 @@ type RoleManagementSheetProps = {
 
 export function RoleManagement({ isOpen, onClose }: RoleManagementSheetProps) {
   return (
-    <BottomSheet snapPoints={['70%', '90%']} isOpen={isOpen} onClose={onClose}>
+    <BottomSheet snapPoints={['80%', '90%']} isOpen={isOpen} onClose={onClose}>
       <List
         rootStyle={{ width: '100%' }}
-        variant="insets"
         data={DATA}
+        variant="insets"
         estimatedItemSize={ESTIMATED_ITEM_HEIGHT.titleOnly}
+        contentContainerStyle={{ paddingBottom: 0 }}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
       />
@@ -32,71 +37,11 @@ export function RoleManagement({ isOpen, onClose }: RoleManagementSheetProps) {
 
 function renderItem<T extends ListDataItem>(info: ListRenderItemInfo<T>) {
   if (typeof info.item === 'string') {
-    return <ListSectionHeader {...info} />;
+    return <ListSectionHeader className="bg-gray-50 text-2xl font-medium" {...info} />;
   }
-  return (
-    <ListItem
-      leftView={
-        <View className="flex-1 justify-center px-4">
-          <View className="aspect-square h-8 rounded bg-red-500" />
-        </View>
-      }
-      rightView={
-        <View className="flex-1 justify-center px-4">
-          <Text variant="caption1" className="ios:px-0 px-2 text-muted-foreground">
-            100+
-          </Text>
-        </View>
-      }
-      {...info}
-      onPress={() => console.log('onPress')}
-    />
-  );
+  return <ListItem {...info} onPress={() => console.log('onPress', info.item)} />;
 }
 
 function keyExtractor(item: (Omit<ListDataItem, string> & { id: string }) | string) {
   return typeof item === 'string' ? item : item.id;
 }
-
-const DATA = [
-  'Header',
-  {
-    id: '1',
-    title: 'Hello',
-    subTitle: 'World',
-  },
-  {
-    id: '2',
-    title: 'Hello',
-    subTitle: 'World',
-  },
-
-  {
-    id: '3',
-    title: 'Hello',
-    subTitle: 'World',
-  },
-  {
-    id: '4',
-    title: 'Hello',
-    subTitle: 'World',
-  },
-  'Header 2',
-
-  {
-    id: '8',
-    title: 'Hello',
-    subTitle: 'World',
-  },
-  'Header 3',
-  {
-    id: '9',
-    title: 'Hello',
-    subTitle: 'World',
-  },
-  {
-    id: '10',
-    title: 'Hello',
-    subTitle: 'World',
-  },
-];

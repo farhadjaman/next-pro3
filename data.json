@@ -13,7 +13,8 @@
       "totalSetOfRepairs": 50,
       "totalSetOfRepairsWTD": 15,
       "successRate": "70%",
-      "responseRate": "80%"
+      "responseRate": "80%",
+      "userRole": ["Assist. Téc., Seixal"]
     },
     {
       "id": "u002",
@@ -28,7 +29,8 @@
       "totalSetOfRepairs": 60,
       "totalSetOfRepairsWTD": 10,
       "successRate": "85%",
-      "responseRate": "90%"
+      "responseRate": "90%",
+      "userRole": ["Assist. Téc., Loulé"]
     },
     {
       "id": "u003",
@@ -43,7 +45,72 @@
       "totalSetOfRepairs": 30,
       "totalSetOfRepairsWTD": 3,
       "successRate": "60%",
-      "responseRate": "75%"
+      "responseRate": "75%",
+      "userRole": ["Assist. Téc., Loulé", "Assist. Téc., Seixal"]
+    },
+    {
+      "id": "u004",
+      "firstName": "Catarina",
+      "lastName": "Silva",
+      "email": "catarina.silva@example.com",
+      "onActiveDuty": false,
+      "backgroundLocationTracking": false,
+      "userType": "super",
+      "jobsCompleted": 0,
+      "jobsCompletedWTD": 0,
+      "totalSetOfRepairs": 0,
+      "totalSetOfRepairsWTD": 0,
+      "successRate": "N/A",
+      "responseRate": "N/A",
+      "userRole": ["Assist. Téc., Lisbon"]
+    },
+    {
+      "id": "u005",
+      "firstName": "Paula",
+      "lastName": "Oliveira",
+      "email": "paula.oliveira@example.com",
+      "onActiveDuty": false,
+      "backgroundLocationTracking": false,
+      "userType": "super",
+      "jobsCompleted": 0,
+      "jobsCompletedWTD": 0,
+      "totalSetOfRepairs": 0,
+      "totalSetOfRepairsWTD": 0,
+      "successRate": "N/A",
+      "responseRate": "N/A",
+      "userRole": ["Assist. Téc., Seixal", "Assist. Téc., Lisbon"]
+    },
+    {
+      "id": "u006",
+      "firstName": "Carlos",
+      "lastName": "Boavista",
+      "email": "carlos.boavista@example.com",
+      "onActiveDuty": true,
+      "backgroundLocationTracking": true,
+      "userType": "user",
+      "jobsCompleted": 12,
+      "jobsCompletedWTD": 4,
+      "totalSetOfRepairs": 45,
+      "totalSetOfRepairsWTD": 8,
+      "successRate": "75%",
+      "responseRate": "85%",
+      "userRole": ["Assist. Téc., Loulé"]
+    },
+    {
+      "id": "u007",
+      "firstName": "Andreia",
+      "lastName": "Sousa",
+      "email": "andreia.sousa@example.com",
+      "onActiveDuty": true,
+      "backgroundLocationTracking": true,
+      "userType": "user",
+      "jobsCompleted": 5,
+      "jobsCompletedWTD": 1,
+      "totalSetOfRepairs": 20,
+      "totalSetOfRepairsWTD": 2,
+      "successRate": "65%",
+      "responseRate": "70%",
+      "userRole": ["Assist. Téc., Seixal"]
     }
   ],
   "jobs": [
@@ -100,6 +167,42 @@
       "date": "2025-03-02",
       "status": "Scheduled",
       "notes": "Routine system check"
+    },
+    {
+      "jobId": "j107",
+      "userId": "u006",
+      "jobTitle": "Sensor Calibration",
+      "location": "Loulé",
+      "date": "2025-03-03",
+      "status": "Action needed",
+      "notes": "Calibrate newly installed sensors"
+    },
+    {
+      "jobId": "j108",
+      "userId": "u006",
+      "jobTitle": "System Diagnostics",
+      "location": "Loulé",
+      "date": "2025-03-04",
+      "status": "Allocated",
+      "notes": "Run full diagnostic on panel"
+    },
+    {
+      "jobId": "j109",
+      "userId": "u007",
+      "jobTitle": "Network Configuration",
+      "location": "Seixal",
+      "date": "2025-03-05",
+      "status": "In Progress",
+      "notes": "Reconfigure router and switch"
+    },
+    {
+      "jobId": "j110",
+      "userId": "u007",
+      "jobTitle": "Software Update",
+      "location": "Seixal",
+      "date": "2025-03-06",
+      "status": "Scheduled",
+      "notes": "Update to latest firmware version"
     }
   ]
 }

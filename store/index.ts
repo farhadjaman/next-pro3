@@ -39,6 +39,7 @@ export type User = {
   onActiveDuty: boolean;
   backgroundLocationTracking: boolean;
   userType: 'user' | 'super';
+  userRole: string[];
   jobsCompleted: number;
   jobsCompletedWTD: number;
   totalSetOfRepairs: number;
