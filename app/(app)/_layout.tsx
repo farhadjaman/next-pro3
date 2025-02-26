@@ -4,7 +4,10 @@ import { router, useSegments, Link } from 'expo-router';
 import { Drawer } from 'expo-router/drawer';
 import { useEffect, useState } from 'react';
 import { Platform, Pressable, View } from 'react-native';
+import { observer } from 'mobx-react-lite';
 
+import RoleManagement from '~/components/app/RoleManagement';
+import { AnimatedChevron } from '~/components/AnimatedIcons/AnimatedChevron';
 import { HeaderButton } from '~/components/HeaderButton';
 import ListLoading from '~/components/loaders/ListLoading';
 import {
@@ -17,8 +20,7 @@ import {
 import { Text } from '~/components/nativewindui/Text';
 import { useAuth } from '~/lib/context/authContext';
 import { useColorScheme } from '~/lib/useColorScheme';
-import { RoleManagement } from '~/app/(app)/components/RoleManagement';
-import { AnimatedChevron } from '~/components/AnimatedIcons/AnimatedChevron';
+import { store } from '~/store';
 
 export default function AppLayout() {
   const { session, isLoading } = useAuth();
@@ -39,7 +41,7 @@ export default function AppLayout() {
 
   return (
     <Drawer
-      drawerContent={DrawerContent}
+      drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={{
         headerShown: true,
         swipeEnabled: true,
@@ -86,10 +88,16 @@ export default function AppLayout() {
   );
 }
 
-function DrawerContent(props: DrawerContentComponentProps) {
+const DrawerContent = observer((props: DrawerContentComponentProps) => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const activeScreen = getActiveDrawerContentScreen(props);
   const { colors } = useColorScheme();
+
+  // Pull username from the store; if not available, fallback to 'Guest'
+  const username =
+    store.currentUser && store.currentUser.firstName && store.currentUser.lastName
+      ? `${store.currentUser.firstName} ${store.currentUser.lastName}`
+      : 'Guest';
 
   return (
     <DrawerContentRoot navigation={props.navigation}>
@@ -101,15 +109,13 @@ function DrawerContent(props: DrawerContentComponentProps) {
           <Feather name="user" size={28} color={colors.primary} />
           <View className="ml-3 flex-1">
             <Text className="text-base font-semibold" style={{ color: colors.foreground }}>
-              username
+              {username}
             </Text>
             <Text className="text-xs text-gray-600">Tap to manage role</Text>
           </View>
           <AnimatedChevron isOpen={isSheetOpen} size={20} color={colors.primary} />
         </Pressable>
       </DrawerContentSection>
-
-      {/* --- Existing Sections --- */}
       <DrawerContentSectionTitle type="default">Activities</DrawerContentSectionTitle>
       <DrawerContentSection>
         <DrawerContentSectionItem
@@ -137,7 +143,7 @@ function DrawerContent(props: DrawerContentComponentProps) {
         />
         <DrawerContentSectionItem icon={{ name: 'music-note' }} isActive={false} label="My Stats" />
       </DrawerContentSection>
-      {<RoleManagement isOpen={isSheetOpen} onClose={() => setIsSheetOpen(false)} />}
+      <RoleManagement isOpen={isSheetOpen} onClose={() => setIsSheetOpen(false)} />
     </DrawerContentRoot>
   );
-}
+});

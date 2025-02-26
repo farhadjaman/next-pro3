@@ -1,6 +1,9 @@
 import React, { useContext, createContext } from 'react';
+
 import { useStorageState } from './useStorageState';
-import { store, User } from '~/store';
+
+import { demoUsers } from '~/lib/demoData';
+import { store } from '~/store';
 
 interface AuthContextType {
   signIn: (
@@ -32,22 +35,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signIn = async (email: string, password: string) => {
     setSession(email);
-    const user: User = {
-      id: 'u001',
-      firstName: 'Mário',
-      lastName: 'Afonso',
-      email,
-      onActiveDuty: true,
-      backgroundLocationTracking: true,
-      userType: email === 'admin@test.com' ? 'super' : 'user',
-      jobsCompleted: 15,
-      jobsCompletedWTD: 15,
-      totalSetOfRepairs: 50,
-      totalSetOfRepairsWTD: 15,
-      successRate: '70%',
-      responseRate: '80%',
-    };
-    store.setUser(user);
+    if (email.includes('admin')) {
+      store.setUserType('super');
+    }
+    store.setUser(demoUsers[0]);
     return { success: true, message: 'Signed In' };
   };
 

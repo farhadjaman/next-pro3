@@ -1,10 +1,4 @@
-import { User } from '~/store';
-
-interface UserRole {
-  id: string;
-  userId: string;
-  title: string;
-}
+import { UserRole, User } from '~/types/user';
 
 export function buildRoleData(users: User[]): Array<string | UserRole> {
   const roleMap = new Map<string, Array<UserRole>>();
@@ -14,8 +8,7 @@ export function buildRoleData(users: User[]): Array<string | UserRole> {
       if (!roleMap.has(role)) {
         roleMap.set(role, []);
       }
-      const id = `${user.id}-${role}`;
-      roleMap.get(role)!.push({ id, userId: user.id, title: user.firstName + ' ' + user.lastName });
+      roleMap.get(role)!.push({ id: user.id, role, title: user.firstName + ' ' + user.lastName });
     }
   }
 
@@ -34,6 +27,5 @@ export function buildRoleData(users: User[]): Array<string | UserRole> {
       result.push(userObj);
     }
   }
-
   return result;
 }

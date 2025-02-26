@@ -7,7 +7,6 @@
       "email": "mario.afonso@example.com",
       "onActiveDuty": true,
       "backgroundLocationTracking": true,
-      "userType": "user",
       "jobsCompleted": 15,
       "jobsCompletedWTD": 15,
       "totalSetOfRepairs": 50,
@@ -23,7 +22,6 @@
       "email": "joao.almeida@example.com",
       "onActiveDuty": false,
       "backgroundLocationTracking": false,
-      "userType": "user",
       "jobsCompleted": 20,
       "jobsCompletedWTD": 5,
       "totalSetOfRepairs": 60,
@@ -39,7 +37,6 @@
       "email": "nuno.anunciacao@example.com",
       "onActiveDuty": true,
       "backgroundLocationTracking": true,
-      "userType": "user",
       "jobsCompleted": 10,
       "jobsCompletedWTD": 2,
       "totalSetOfRepairs": 30,
@@ -49,61 +46,12 @@
       "userRole": ["Assist. Téc., Loulé", "Assist. Téc., Seixal"]
     },
     {
-      "id": "u004",
-      "firstName": "Catarina",
-      "lastName": "Silva",
-      "email": "catarina.silva@example.com",
-      "onActiveDuty": false,
-      "backgroundLocationTracking": false,
-      "userType": "super",
-      "jobsCompleted": 0,
-      "jobsCompletedWTD": 0,
-      "totalSetOfRepairs": 0,
-      "totalSetOfRepairsWTD": 0,
-      "successRate": "N/A",
-      "responseRate": "N/A",
-      "userRole": ["Assist. Téc., Lisbon"]
-    },
-    {
-      "id": "u005",
-      "firstName": "Paula",
-      "lastName": "Oliveira",
-      "email": "paula.oliveira@example.com",
-      "onActiveDuty": false,
-      "backgroundLocationTracking": false,
-      "userType": "super",
-      "jobsCompleted": 0,
-      "jobsCompletedWTD": 0,
-      "totalSetOfRepairs": 0,
-      "totalSetOfRepairsWTD": 0,
-      "successRate": "N/A",
-      "responseRate": "N/A",
-      "userRole": ["Assist. Téc., Seixal", "Assist. Téc., Lisbon"]
-    },
-    {
-      "id": "u006",
-      "firstName": "Carlos",
-      "lastName": "Boavista",
-      "email": "carlos.boavista@example.com",
-      "onActiveDuty": true,
-      "backgroundLocationTracking": true,
-      "userType": "user",
-      "jobsCompleted": 12,
-      "jobsCompletedWTD": 4,
-      "totalSetOfRepairs": 45,
-      "totalSetOfRepairsWTD": 8,
-      "successRate": "75%",
-      "responseRate": "85%",
-      "userRole": ["Assist. Téc., Loulé"]
-    },
-    {
       "id": "u007",
       "firstName": "Andreia",
       "lastName": "Sousa",
       "email": "andreia.sousa@example.com",
       "onActiveDuty": true,
       "backgroundLocationTracking": true,
-      "userType": "user",
       "jobsCompleted": 5,
       "jobsCompletedWTD": 1,
       "totalSetOfRepairs": 20,
@@ -111,98 +59,366 @@
       "successRate": "65%",
       "responseRate": "70%",
       "userRole": ["Assist. Téc., Seixal"]
+    },
+    {
+      "id": "u004",
+      "firstName": "Carlos",
+      "lastName": "Silva",
+      "email": "carlos.silva@example.com",
+      "onActiveDuty": true,
+      "backgroundLocationTracking": true,
+      "jobsCompleted": 8,
+      "jobsCompletedWTD": 3,
+      "totalSetOfRepairs": 25,
+      "totalSetOfRepairsWTD": 5,
+      "successRate": "75%",
+      "responseRate": "78%",
+      "userRole": ["Assist. Téc., Seixal"]
+    },
+    {
+      "id": "u005",
+      "firstName": "Ana",
+      "lastName": "Costa",
+      "email": "ana.costa@example.com",
+      "onActiveDuty": false,
+      "backgroundLocationTracking": false,
+      "jobsCompleted": 12,
+      "jobsCompletedWTD": 4,
+      "totalSetOfRepairs": 30,
+      "totalSetOfRepairsWTD": 6,
+      "successRate": "80%",
+      "responseRate": "85%",
+      "userRole": ["Assist. Téc., Loulé"]
+    },
+    {
+      "id": "u006",
+      "firstName": "Pedro",
+      "lastName": "Martins",
+      "email": "pedro.martins@example.com",
+      "onActiveDuty": true,
+      "backgroundLocationTracking": true,
+      "jobsCompleted": 5,
+      "jobsCompletedWTD": 2,
+      "totalSetOfRepairs": 15,
+      "totalSetOfRepairsWTD": 3,
+      "successRate": "70%",
+      "responseRate": "75%",
+      "userRole": ["Eng. de Manutenção"]
+    },
+    {
+      "id": "u008",
+      "firstName": "Sofia",
+      "lastName": "Rocha",
+      "email": "sofia.rocha@example.com",
+      "onActiveDuty": true,
+      "backgroundLocationTracking": false,
+      "jobsCompleted": 9,
+      "jobsCompletedWTD": 3,
+      "totalSetOfRepairs": 22,
+      "totalSetOfRepairsWTD": 4,
+      "successRate": "82%",
+      "responseRate": "88%",
+      "userRole": ["Operador de Sistema"]
+    },
+    {
+      "id": "u009",
+      "firstName": "Rita",
+      "lastName": "Fernandes",
+      "email": "rita.fernandes@example.com",
+      "onActiveDuty": false,
+      "backgroundLocationTracking": true,
+      "jobsCompleted": 14,
+      "jobsCompletedWTD": 6,
+      "totalSetOfRepairs": 35,
+      "totalSetOfRepairsWTD": 7,
+      "successRate": "85%",
+      "responseRate": "90%",
+      "userRole": ["Técnico Especializado"]
+    },
+    {
+      "id": "u010",
+      "firstName": "Miguel",
+      "lastName": "Pereira",
+      "email": "miguel.pereira@example.com",
+      "onActiveDuty": true,
+      "backgroundLocationTracking": true,
+      "jobsCompleted": 7,
+      "jobsCompletedWTD": 3,
+      "totalSetOfRepairs": 20,
+      "totalSetOfRepairsWTD": 4,
+      "successRate": "78%",
+      "responseRate": "80%",
+      "userRole": ["Assist. Téc., Seixal"]
+    },
+    {
+      "id": "u011",
+      "firstName": "Beatriz",
+      "lastName": "Gomes",
+      "email": "beatriz.gomes@example.com",
+      "onActiveDuty": false,
+      "backgroundLocationTracking": false,
+      "jobsCompleted": 16,
+      "jobsCompletedWTD": 5,
+      "totalSetOfRepairs": 40,
+      "totalSetOfRepairsWTD": 8,
+      "successRate": "88%",
+      "responseRate": "92%",
+      "userRole": ["Assist. Téc., Loulé"]
+    },
+    {
+      "id": "u012",
+      "firstName": "Tiago",
+      "lastName": "Lima",
+      "email": "tiago.lima@example.com",
+      "onActiveDuty": true,
+      "backgroundLocationTracking": false,
+      "jobsCompleted": 10,
+      "jobsCompletedWTD": 4,
+      "totalSetOfRepairs": 27,
+      "totalSetOfRepairsWTD": 5,
+      "successRate": "76%",
+      "responseRate": "83%",
+      "userRole": ["Eng. de Manutenção"]
+    },
+    {
+      "id": "u013",
+      "firstName": "Clara",
+      "lastName": "Mendes",
+      "email": "clara.mendes@example.com",
+      "onActiveDuty": false,
+      "backgroundLocationTracking": true,
+      "jobsCompleted": 11,
+      "jobsCompletedWTD": 3,
+      "totalSetOfRepairs": 29,
+      "totalSetOfRepairsWTD": 6,
+      "successRate": "79%",
+      "responseRate": "84%",
+      "userRole": ["Operador de Sistema"]
+    },
+    {
+      "id": "u014",
+      "firstName": "Ricardo",
+      "lastName": "Soares",
+      "email": "ricardo.soares@example.com",
+      "onActiveDuty": true,
+      "backgroundLocationTracking": false,
+      "jobsCompleted": 13,
+      "jobsCompletedWTD": 5,
+      "totalSetOfRepairs": 33,
+      "totalSetOfRepairsWTD": 7,
+      "successRate": "82%",
+      "responseRate": "87%",
+      "userRole": ["Técnico Especializado"]
     }
   ],
-  "jobs": [
+  "tasks": [
     {
-      "jobId": "j101",
-      "userId": "u001",
-      "jobTitle": "Swap modules",
-      "location": "Seixal",
-      "date": "2025-02-24",
-      "status": "Action needed",
-      "notes": "Check system logs"
+      "id": "1",
+      "title": "Coffee Machine Repair",
+      "type": "repair",
+      "dateTime": {
+        "start": "2025-01-15T10:00:00",
+        "end": "2025-01-15T12:30:00"
+      },
+      "location": {
+        "name": "HOTEL RITZ LISBOA",
+        "address": "AVENIDA DA LIBERDADE 138",
+        "postalCode": "1250-140",
+        "city": "LISBOA"
+      },
+      "equipment": {
+        "model": "S30 Perfect Touch",
+        "serialNumber": "22 749 SPT a 0073 1 J Z 4L x"
+      },
+      "technician": {
+        "name": "Mário Afonso",
+        "id": "85112463"
+      },
+      "taskId": "162001",
+      "status": "completed",
+      "sla": "SLA 8H, 15/1/25 @ 18:30"
     },
     {
-      "jobId": "j102",
-      "userId": "u001",
-      "jobTitle": "Repair sensor",
-      "location": "Seixal",
-      "date": "2025-02-25",
-      "status": "Allocated",
-      "notes": "Replace sensor, run final tests"
+      "id": "2",
+      "title": "Machine Withdrawal",
+      "type": "withdrawal",
+      "dateTime": {
+        "start": "2025-01-20T15:00:00",
+        "end": "2025-01-20T16:30:00"
+      },
+      "location": {
+        "name": "POUSADA DE LISBOA",
+        "address": "PRAÇA DO COMÉRCIO 31-34",
+        "postalCode": "1100-148",
+        "city": "LISBOA"
+      },
+      "equipment": {
+        "model": "Momento 200",
+        "serialNumber": "20 345 MM2 k 0015 2 L S 3H n"
+      },
+      "technician": {
+        "name": "João Almeida",
+        "id": "92387416"
+      },
+      "taskId": "162045",
+      "status": "in_progress",
+      "sla": "SLA 12H, 21/1/25 @ 09:00"
     },
     {
-      "jobId": "j103",
-      "userId": "u002",
-      "jobTitle": "Check circuit boards",
-      "location": "Loulé",
-      "date": "2025-02-26",
-      "status": "Allocated",
-      "notes": "Board replacement"
+      "id": "3",
+      "title": "Grinder Component Exchange",
+      "type": "component_exchange",
+      "dateTime": {
+        "start": "2025-01-25T14:00:00",
+        "end": "2025-01-25T15:30:00"
+      },
+      "location": {
+        "name": "HOTEL INTERCONTINENTAL CASCAIS-ESTORIL",
+        "address": "AVENIDA MARGINAL 8023",
+        "postalCode": "2765-249",
+        "city": "ESTORIL"
+      },
+      "equipment": {
+        "model": "Appia Life Compact",
+        "serialNumber": "24 082 ALC h 0052 3 M T 5S r"
+      },
+      "technician": {
+        "name": "Tiago Mendes",
+        "id": "94621703"
+      },
+      "taskId": "162100",
+      "status": "new",
+      "sla": "SLA 8H, 25/1/25 @ 22:00"
     },
     {
-      "jobId": "j104",
-      "userId": "u002",
-      "jobTitle": "Diagnose power module",
-      "location": "Loulé",
-      "date": "2025-02-27",
-      "status": "In Progress",
-      "notes": "Power fluctuations"
+      "id": "4",
+      "title": "Coffee Machine Repair",
+      "type": "repair",
+      "dateTime": {
+        "start": "2025-02-05T10:00:00",
+        "end": "2025-02-05T12:30:00"
+      },
+      "location": {
+        "name": "HOTEL VILA GALÉ PORTO",
+        "address": "AV. FERNÃO DE MAGALHÃES 7",
+        "postalCode": "4300-190",
+        "city": "PORTO"
+      },
+      "equipment": {
+        "model": "Virtuoso 65",
+        "serialNumber": "24 112 VR6 n 0021 5 P T 2F a"
+      },
+      "technician": {
+        "name": "Miguel Costa",
+        "id": "85112463"
+      },
+      "taskId": "162145",
+      "status": "new",
+      "sla": "SLA 4H, 05/2/25 @ 14:30"
     },
     {
-      "jobId": "j105",
-      "userId": "u003",
-      "jobTitle": "Heating Element Replacement",
-      "location": "Seixal",
-      "date": "2025-03-01",
-      "status": "Awaiting Parts",
-      "notes": "Ordered replacement parts"
+      "id": "5",
+      "title": "Machine Withdrawal",
+      "type": "withdrawal",
+      "dateTime": {
+        "start": "2025-02-10T15:00:00",
+        "end": "2025-02-10T16:30:00"
+      },
+      "location": {
+        "name": "POUSADA DE LISBOA",
+        "address": "PRAÇA DO COMÉRCIO 31-34",
+        "postalCode": "1100-148",
+        "city": "LISBOA"
+      },
+      "equipment": {
+        "model": "Momento 200",
+        "serialNumber": "20 345 MM2 k 0015 2 L S 3H n"
+      },
+      "technician": {
+        "name": "Carolina Silva",
+        "id": "92387416"
+      },
+      "taskId": "162201",
+      "status": "in_progress",
+      "sla": "SLA 12H, 11/2/25 @ 09:00"
     },
     {
-      "jobId": "j106",
-      "userId": "u003",
-      "jobTitle": "Monthly Maintenance Visit",
-      "location": "Seixal HQ",
-      "date": "2025-03-02",
-      "status": "Scheduled",
-      "notes": "Routine system check"
+      "id": "6",
+      "title": "Preventive Maintenance",
+      "type": "preventive",
+      "dateTime": {
+        "start": "2025-02-15T08:30:00",
+        "end": "2025-02-15T10:00:00"
+      },
+      "location": {
+        "name": "HOTEL PESTANA PALACE",
+        "address": "RUA JÁCOME DE BAENA 37",
+        "postalCode": "1300-125",
+        "city": "LISBOA"
+      },
+      "equipment": {
+        "model": "Tempesta 120",
+        "serialNumber": "23 516 TP1 j 0034 6 D R 2K p"
+      },
+      "technician": {
+        "name": "André Oliveira",
+        "id": "87045219"
+      },
+      "taskId": "162248",
+      "status": "new",
+      "sla": "SLA 24H, 16/2/25 @ 10:30"
     },
     {
-      "jobId": "j107",
-      "userId": "u006",
-      "jobTitle": "Sensor Calibration",
-      "location": "Loulé",
-      "date": "2025-03-03",
-      "status": "Action needed",
-      "notes": "Calibrate newly installed sensors"
+      "id": "7",
+      "title": "Grinder Component Exchange",
+      "type": "component_exchange",
+      "dateTime": {
+        "start": "2025-02-18T14:00:00",
+        "end": "2025-02-18T15:30:00"
+      },
+      "location": {
+        "name": "HOTEL INTERCONTINENTAL CASCAIS-ESTORIL",
+        "address": "AVENIDA MARGINAL 8023",
+        "postalCode": "2765-249",
+        "city": "ESTORIL"
+      },
+      "equipment": {
+        "model": "Appia Life Compact",
+        "serialNumber": "24 082 ALC h 0052 3 M T 5S r"
+      },
+      "technician": {
+        "name": "Tiago Mendes",
+        "id": "94621703"
+      },
+      "taskId": "162307",
+      "status": "completed",
+      "sla": "SLA 8H, 18/2/25 @ 22:00"
     },
     {
-      "jobId": "j108",
-      "userId": "u006",
-      "jobTitle": "System Diagnostics",
-      "location": "Loulé",
-      "date": "2025-03-04",
-      "status": "Allocated",
-      "notes": "Run full diagnostic on panel"
-    },
-    {
-      "jobId": "j109",
-      "userId": "u007",
-      "jobTitle": "Network Configuration",
-      "location": "Seixal",
-      "date": "2025-03-05",
-      "status": "In Progress",
-      "notes": "Reconfigure router and switch"
-    },
-    {
-      "jobId": "j110",
-      "userId": "u007",
-      "jobTitle": "Software Update",
-      "location": "Seixal",
-      "date": "2025-03-06",
-      "status": "Scheduled",
-      "notes": "Update to latest firmware version"
+      "id": "8",
+      "title": "Water System Repair",
+      "type": "repair",
+      "dateTime": {
+        "start": "2025-02-24T16:00:00",
+        "end": "2025-02-24T18:30:00"
+      },
+      "location": {
+        "name": "HOTEL TIVOLI AVENIDA LIBERDADE",
+        "address": "AVENIDA DA LIBERDADE 185",
+        "postalCode": "1269-050",
+        "city": "LISBOA"
+      },
+      "equipment": {
+        "model": "S30 Perfect Touch",
+        "serialNumber": "22 749 SPT a 0073 1 J Z 4L x"
+      },
+      "technician": {
+        "name": "Sofia Martins",
+        "id": "93841265"
+      },
+      "taskId": "162356",
+      "status": "new",
+      "sla": "SLA 8H, 24/2/25 @ 18:30"
     }
   ]
 }

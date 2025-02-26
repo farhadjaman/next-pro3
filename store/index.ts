@@ -1,7 +1,11 @@
 import { makeAutoObservable } from 'mobx';
 
+import { User, UserType } from '~/types/user';
+
 class Store {
   currentUser: User | null = null;
+  selectedUserRole: string | null = null;
+  userType: UserType = 'user';
   isLoading: boolean = false;
   error: string | null = null;
 
@@ -19,6 +23,19 @@ class Store {
     this.currentUser = userData;
   }
 
+  // Set the selected user role
+  setSelectedUserRole(role: string) {
+    this.selectedUserRole = role;
+  }
+  // Get the selected user role
+  getSelectedUserRole() {
+    return this.selectedUserRole;
+  }
+
+  clearSelectedUserRole() {
+    this.selectedUserRole = null;
+  }
+
   // Clear the user data (logout)
   clearUser() {
     this.currentUser = null;
@@ -29,22 +46,20 @@ class Store {
       this.currentUser = { ...this.currentUser, ...updates };
     }
   }
-}
 
-export type User = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  onActiveDuty: boolean;
-  backgroundLocationTracking: boolean;
-  userType: 'user' | 'super';
-  userRole: string[];
-  jobsCompleted: number;
-  jobsCompletedWTD: number;
-  totalSetOfRepairs: number;
-  totalSetOfRepairsWTD: number;
-  successRate: string;
-  responseRate: string;
-};
+  setUserType(userType: UserType) {
+    this.userType = userType;
+  }
+
+  clearUserType() {
+    this.userType = 'user';
+  }
+
+  setLoading(isLoading: boolean) {
+    this.isLoading = isLoading;
+  }
+  setError(error: string | null) {
+    this.error = error;
+  }
+}
 export const store = new Store();
