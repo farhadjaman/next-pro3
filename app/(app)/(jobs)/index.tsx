@@ -2,9 +2,8 @@ import { FlashList } from '@shopify/flash-list';
 import React, { useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
 import { CalendarProvider, ExpandableCalendar } from 'react-native-calendars';
-import CalenderScreen from '~/components/ExpandableCalender'
+import CalenderScreen from '~/components/ExpandableCalender';
 import { SegmentedControl } from '~/components/nativewindui/SegmentedControl';
-import { Text } from '~/components/nativewindui/Text';
 import { TaskCard } from '~/components/Tasks/TaskCard';
 import { demoTasks } from '~/lib/demoData';
 import { Task } from '~/types/task';
@@ -29,13 +28,10 @@ export default function Jobs() {
   // Render just the main content area (Calendar or Map)
   const renderMainContent = () => {
     if (selectedIndex === 0) {
-      // Calendar view
-      return <ExpandableCalendar />;
+      return <ExpandableCalendar  />;
     } else {
       // Map view placeholder
-      return (
-        <CalenderScreen/>
-      );
+      return <CalenderScreen />;
     }
   };
 
@@ -56,12 +52,9 @@ export default function Jobs() {
             }}
           />
         </View>
-        {/* Calendar or Map view */}
-
-        {/* Main content area - changes based on tab selection */}
         {renderMainContent()}
         <FlashList
-          estimatedItemSize={100}
+          estimatedItemSize={120}
           data={tasks}
           renderItem={({ item }) => (
             <TaskCard task={item} onAccept={handleAcceptTask} onReject={handleRejectTask} />
