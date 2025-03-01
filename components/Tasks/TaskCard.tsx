@@ -92,8 +92,7 @@ export function TaskCard({ task, onAccept, onReject }: TaskCardProps) {
       renderLeftActions={renderLeftActions}
       overshootRight={false}
       overshootLeft={false}>
-      <Pressable className="w-full bg-white p-4">
-        {/* Header: ID and Status */}
+      <Pressable className="rounded-md bg-white p-4">
         <View className="mb-3 flex-row items-center justify-between">
           <View className="flex-row items-center gap-2 space-x-2">
             {/* Task ID */}
@@ -122,7 +121,7 @@ export function TaskCard({ task, onAccept, onReject }: TaskCardProps) {
           </View>
         </View>
 
-        <View className="mb-3 flex-row items-end justify-between">
+        <View className="flex-row items-end justify-between">
           <View className={`self-start rounded-full px-3 py-1 ${getTaskTypeColor()}`}>
             <Text className="text-sm font-medium text-blue-600">{task.sla}</Text>
           </View>
@@ -131,7 +130,6 @@ export function TaskCard({ task, onAccept, onReject }: TaskCardProps) {
           </View>
         </View>
 
-        {/* Location Section */}
         <View className=" rounded-xl bg-gray-100 p-2.5">
           <Text className="text-md font-medium text-gray-800">{task.location.name} </Text>
           <Text className="text-sm text-gray-600">

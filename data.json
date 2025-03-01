@@ -221,10 +221,12 @@
         "end": "2025-01-15T12:30:00"
       },
       "location": {
-        "name": "HOTEL RITZ LISBOA",
+        "name": "PRAÇA DO COMÉRCIO",
         "address": "AVENIDA DA LIBERDADE 138",
         "postalCode": "1250-140",
-        "city": "LISBOA"
+        "city": "LISBOA",
+        "lat": 38.7078,
+        "long": -9.1366
       },
       "equipment": {
         "model": "S30 Perfect Touch",
@@ -247,10 +249,12 @@
         "end": "2025-01-20T16:30:00"
       },
       "location": {
-        "name": "POUSADA DE LISBOA",
+        "name": "SÃO JORGE CASTLE",
         "address": "PRAÇA DO COMÉRCIO 31-34",
         "postalCode": "1100-148",
-        "city": "LISBOA"
+        "city": "LISBOA",
+        "lat": 38.7139,
+        "long": -9.1334
       },
       "equipment": {
         "model": "Momento 200",
@@ -276,7 +280,9 @@
         "name": "HOTEL INTERCONTINENTAL CASCAIS-ESTORIL",
         "address": "AVENIDA MARGINAL 8023",
         "postalCode": "2765-249",
-        "city": "ESTORIL"
+        "city": "ESTORIL",
+        "lat": 38.6979,
+        "long": -9.3966
       },
       "equipment": {
         "model": "Appia Life Compact",
@@ -302,7 +308,9 @@
         "name": "HOTEL VILA GALÉ PORTO",
         "address": "AV. FERNÃO DE MAGALHÃES 7",
         "postalCode": "4300-190",
-        "city": "PORTO"
+        "city": "PORTO",
+        "lat": 41.1496,
+        "long": -8.6109
       },
       "equipment": {
         "model": "Virtuoso 65",
@@ -325,10 +333,12 @@
         "end": "2025-02-10T16:30:00"
       },
       "location": {
-        "name": "POUSADA DE LISBOA",
+        "name": "BELÉM TOWER",
         "address": "PRAÇA DO COMÉRCIO 31-34",
         "postalCode": "1100-148",
-        "city": "LISBOA"
+        "city": "LISBOA",
+        "lat": 38.6916,
+        "long": -9.2159
       },
       "equipment": {
         "model": "Momento 200",
@@ -351,10 +361,12 @@
         "end": "2025-02-15T10:00:00"
       },
       "location": {
-        "name": "HOTEL PESTANA PALACE",
+        "name": "PARQUE EDUARDO VII",
         "address": "RUA JÁCOME DE BAENA 37",
         "postalCode": "1300-125",
-        "city": "LISBOA"
+        "city": "LISBOA",
+        "lat": 38.7285,
+        "long": -9.1525
       },
       "equipment": {
         "model": "Tempesta 120",
@@ -380,7 +392,9 @@
         "name": "HOTEL INTERCONTINENTAL CASCAIS-ESTORIL",
         "address": "AVENIDA MARGINAL 8023",
         "postalCode": "2765-249",
-        "city": "ESTORIL"
+        "city": "ESTORIL",
+        "lat": 38.6979,
+        "long": -9.3966
       },
       "equipment": {
         "model": "Appia Life Compact",
@@ -403,10 +417,12 @@
         "end": "2025-02-24T18:30:00"
       },
       "location": {
-        "name": "HOTEL TIVOLI AVENIDA LIBERDADE",
+        "name": "LX FACTORY",
         "address": "AVENIDA DA LIBERDADE 185",
         "postalCode": "1269-050",
-        "city": "LISBOA"
+        "city": "LISBOA",
+        "lat": 38.7033,
+        "long": -9.1777
       },
       "equipment": {
         "model": "S30 Perfect Touch",

@@ -8,6 +8,22 @@ class Store {
   userType: UserType = 'user';
   isLoading: boolean = false;
   error: string | null = null;
+  currentLocation: {
+    lat: number;
+    long: number;
+  } | null = {
+    lat: 38.736946,
+    long: -9.142685,
+  };
+  currentShop: {
+    name: string;
+    lat: number;
+    long: number;
+  } | null = {
+    name: 'Shop Name',
+    lat: 38.7223,
+    long: -9.1393,
+  };
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
@@ -30,6 +46,10 @@ class Store {
   // Get the selected user role
   getSelectedUserRole() {
     return this.selectedUserRole;
+  }
+
+  setCurrentShop(shop: { name: string; lat: number; long: number }) {
+    this.currentShop = shop;
   }
 
   clearSelectedUserRole() {

@@ -59,7 +59,7 @@ export default function AppLayout() {
       />
 
       <Drawer.Screen
-        name="(tabs)"
+        name="(jobs)"
         options={{
           headerTitle: 'Professional Jobs',
           drawerLabel: 'Professional Jobs',

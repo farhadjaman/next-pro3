@@ -11,6 +11,8 @@ export type Task = {
     address: string;
     postalCode: string;
     city: string;
+    lat: number;
+    long: number;
   };
   equipment: {
     model: string;
@@ -24,3 +26,16 @@ export type Task = {
   status: string;
   sla: string;
 };
+
+export interface TaskLocation {
+  id: string;
+  title: string;
+  location: {
+    name: string;
+    address: string;
+    postalCode: string;
+    city: string;
+    lat: number | string;
+    long: number | string;
+  };
+}

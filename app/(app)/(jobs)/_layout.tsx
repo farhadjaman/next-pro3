@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router/tabs';
 import { useColorScheme } from '~/lib/useColorScheme';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5, AntDesign } from '@expo/vector-icons';
 
 export default function TabsLayout() {
   const { colors } = useColorScheme();
@@ -16,22 +16,22 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'On Site',
+          title: 'map',
+          tabBarIcon: ({ color }) => <FontAwesome5 name="map" size={20} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="calender"
+        options={{
+          title: 'calender',
+          tabBarIcon: ({ color }) => <AntDesign name="calendar" size={20} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="unassigned"
+        options={{
+          title: 'Unassigned',
           tabBarIcon: ({ color }) => <FontAwesome5 name="tasks" size={20} color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="workshop"
-        options={{
-          title: 'Workshop',
-          tabBarIcon: ({ color }) => <FontAwesome5 name="wrench" size={20} color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="other"
-        options={{
-          title: 'Other',
-          tabBarIcon: ({ color }) => <FontAwesome5 name="users" size={20} color={color} />,
         }}
       />
       <Tabs.Screen
