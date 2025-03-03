@@ -10,7 +10,7 @@ import { store } from '~/store';
 const { width: WINDOW_WIDTH } = Dimensions.get('window');
 
 const CARD_WIDTH = WINDOW_WIDTH * 0.9;
-const CAROUSEL_HEIGHT = 160;
+const CAROUSEL_HEIGHT = 100;
 
 const tasks: Task[] = Array.isArray(demoTasks)
   ? demoTasks.map((task) => ({
@@ -27,7 +27,6 @@ const TaskCarousel: React.FC = () => {
 
   const handleSnapToItem = (index: number) => {
     const task = tasks[index];
-    console.log('task', task);
     if (task && task.location) {
       store.setCurrentShop({
         name: task.location.name,
@@ -48,7 +47,9 @@ const TaskCarousel: React.FC = () => {
         data={tasks}
         renderItem={({ item }) => (
           <View style={styles.cardWrapper}>
-            <TaskCard task={item} onAccept={handleAcceptTask} onReject={handleRejectTask} />
+            <TaskCard styles={{
+              borderRadius:16
+            }} task={item} onAccept={handleAcceptTask} onReject={handleRejectTask} />
           </View>
         )}
         width={CARD_WIDTH}

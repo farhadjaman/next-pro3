@@ -1,11 +1,15 @@
 import { FlashList } from '@shopify/flash-list';
+import { useState } from 'react';
 import { SafeAreaView, View } from 'react-native';
-import { CalendarProvider, ExpandableCalendar } from 'react-native-calendars';
+import { CalendarProvider, ExpandableCalendar, LocaleConfig } from 'react-native-calendars';
+import XDate from 'xdate';
 
 import { TaskCard } from '~/components/Tasks/TaskCard';
+import { SearchInput } from '~/components/nativewindui/SearchInput';
+import { Text } from '~/components/nativewindui/Text';
 import { demoTasks } from '~/lib/demoData';
-import { Task } from '~/types/task';
 import { useColorScheme } from '~/lib/useColorScheme';
+import { Task } from '~/types/task';
 
 function handleRejectTask() {}
 
@@ -17,6 +21,41 @@ const tasks: Task[] = demoTasks.map((task) => ({
   },
 }));
 
+LocaleConfig.locales = LocaleConfig.locales || {};
+LocaleConfig.locales['en'] = {
+  monthNames: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
+  monthNamesShort: [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ],
+  dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+  dayNamesShort: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+};
+LocaleConfig.defaultLocale = 'en';
+
 export default function Calender() {
   const today = new Date().toISOString().split('T')[0];
   const fastDate = getPastDate(3);
@@ -24,57 +63,126 @@ export default function Calender() {
   const dates = [fastDate, today].concat(futureDates);
   const { colors } = useColorScheme();
 
+  // Add state to track selected date
+  const [selectedDate, setSelectedDate] = useState(today);
+
+  const markedDates = {
+    '2025-03-08': {
+      dots: [
+        { key: 'event1', color: colors.primary },
+      ],
+    },
+    '2025-03-09': {
+      dots: [
+        { key: 'event2', color: colors.primary },
+      ],
+    },
+    '2025-03-27': {
+      dots: [
+        { key: 'event2', color: colors.primary },
+      ],
+    },
+  }
+
   const calendarTheme = {
-    backgroundColor: colors.card,
-    calendarBackground: colors.card,
-    textSectionTitleColor: colors.grey,
+    textSectionTitleColor: '#1f2937',
     selectedDayBackgroundColor: colors.primary,
     selectedDayTextColor: colors.background,
-    selectedDayFontWeight: 'semibold' as const,
-    textDayFontWeight: 'semibold' as const,
-    textMonthFontWeight: 'bold' as const,
+    unselectedDayTextColor: '#212529',
+    textDayFontWeight: '500' as const,
+    textDayHeaderFontSize: 14,
     todayTextColor: colors.primary,
-    dayTextColor: colors.grey,
-    textDisabledColor: colors.grey4,
+    dayTextColor: '#212529',
+    textDisabledColor: '#fff',
     dotColor: colors.primary,
     selectedDotColor: colors.background,
     arrowColor: colors.primary,
     monthTextColor: colors.grey,
-    textDayFontSize: 14,
+    textDayFontSize: 18,
     textMonthFontSize: 16,
-    textDayFontFamily: colors.primary,
-    textDayFontColor: colors.grey,
-    textDayTextColor: colors.grey,
-    textDayHeaderFontSize: 14,
+    textDayFontFamily: 'System',
+    dayVerticalMargin: 0,
+    dayHorizontalMargin: 0,
+    dayVerticalPadding: 1,
+    dayHorizontalPadding: 1,
+    dayComponentHeight: 24,
+    dayHeaderMarginBottom: 4,
+    'stylesheet.expandableCalendar.main': {
+      knob: {
+        height: 5,
+        width: 35,
+      },
+      week: {
+        marginVertical: 3,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+      },
+    },
   };
 
   function handleAcceptTask(taskId: string): void {
     throw new Error('Function not implemented.');
   }
 
+  // Format the date to show only the month name
+  const formatMonth = (date: XDate | undefined) => {
+    if (!date) return '';
+    try {
+      return date.toString('MMMM yyyy');
+    } catch (error) {
+      console.log('Error formatting date:', error);
+      return '';
+    }
+  };
+
+  // Handle day press
+  const handleDayPress = (day: any) => {
+    console.log('Selected day', day);
+    setSelectedDate(day.dateString);
+  };
+
   return (
     <CalendarProvider
-      date={dates[1]}
+      date={selectedDate || dates[1]}
       onDateChanged={(date) => {
         console.log('Date changed:', date);
       }}
       onMonthChange={(month) => {
         console.log('Month changed:', month);
       }}>
-      <SafeAreaView className="flex-1">
+      <SafeAreaView className="flex-1 flex-col gap-y-0.5">
+        <View className="justify-center p-3">
+          <SearchInput textContentType="none" autoComplete="off" />
+        </View>
         <ExpandableCalendar
           theme={calendarTheme}
           firstDay={1}
-          hideExtraDays={false}
           enableSwipeMonths
           hideArrows
+          markedDates={markedDates}
+          markingType="multi-dot"
           closeOnDayPress={false}
+          allowShadow={false}
+          hideExtraDays
+          disableAllTouchEventsForDisabledDays
+          onDayPress={handleDayPress}
+          // markedDates={markedDates}
+          renderHeader={(date) => {
+            const formattedMonth = formatMonth(date);
+            return (
+              <View className="w-full items-start justify-start p-2.5  text-3xl">
+                <Text variant="title3" className="font-bold text-gray-800">
+                  {formattedMonth || ''}
+                </Text>
+              </View>
+            );
+          }}
         />
         <FlashList
           estimatedItemSize={100}
           data={tasks}
           renderItem={({ item }) => (
-            <TaskCard task={item} onAccept={handleAcceptTask} onReject={handleRejectTask} />
+            <TaskCard styles={{ paddingHorizontal: 24, paddingVertical:10 }} task={item} onAccept={handleAcceptTask} onReject={handleRejectTask} />
           )}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => <View className="h-0.5 border-border" />}
