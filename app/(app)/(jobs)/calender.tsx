@@ -87,13 +87,16 @@ export default function Calender() {
     monthTextColor: colors.grey,
     textDayFontSize: 20,
     textMonthFontSize: 16,
-    textDayFontFamily: 'System',
-    dayVerticalMargin: 0,
-    dayHorizontalMargin: 0,
-    dayVerticalPadding: 1,
-    dayHorizontalPadding: 2,
-    dayComponentHeight: 30,
-    dayHeaderMarginBottom: 4,
+    weekVerticalMargin: 6, //space between rows
+    'stylesheet.day.basic': {
+      base: {
+        width: 34,
+        height: 34,
+        borderRadius: 100,
+        alignItems: 'center',
+        justifyContent: 'start',
+      },
+    },
   };
 
   function handleAcceptTask(taskId: string): void {
@@ -130,7 +133,7 @@ export default function Calender() {
         <View className="justify-center p-3">
           <SearchInput textContentType="none" autoComplete="off" />
         </View>
-        <ExpandableCalendar
+        <ExpandableCalendar className="flex-1"
           theme={calendarTheme}
           firstDay={1}
           enableSwipeMonths
@@ -142,7 +145,6 @@ export default function Calender() {
           hideExtraDays
           disableAllTouchEventsForDisabledDays
           onDayPress={handleDayPress}
-          // markedDates={markedDates}
           renderHeader={(date) => {
             const formattedMonth = formatMonth(date);
             return (
