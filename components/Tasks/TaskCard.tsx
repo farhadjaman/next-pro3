@@ -115,14 +115,14 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
   //for first row
   const taskId = task.taskId;
   const title = task.title;
-  const titleTruncated = truncateText(`${taskId} ${title}`, 40);
+  const titleTruncated = truncateText(`${taskId} ${title}`, 34);
 
   //for second row
   const type = getFormattedType(task.type);
   const model = task.equipment.model;
   const serialNumber = task.equipment.serialNumber;
   const modelInfo = `${type} • ${model} • ${serialNumber}`;
-  const modelInfoTruncated = truncateText(modelInfo, 36);
+  const modelInfoTruncated = truncateText(modelInfo, 47);
 
   //for third row
   //for SLA
@@ -131,11 +131,7 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
     ? `${formatDate(task.slaDate)} • ${formatTimeShort(task.slaDate)}`
     : '';
   const SLAinfo = `${SLA} ${SLAdate}`;
-  const SLAinfoTruncated =
-  task.isAppointed?
-   truncateText(SLAinfo, 28)
-  :
-   truncateText(SLAinfo, 36);
+  const SLAinfoTruncated = task.isAppointed ? truncateText(SLAinfo, 28) : truncateText(SLAinfo, 36);
 
   //for Expected Dates
   const expectedDates = task.expectedDates
@@ -155,11 +151,14 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
         ...styles,
       }}>
       {/* Column 1: Left column with dots */}
-      <View className='flex-col items-center justify-center' style={{ width: 14, marginTop: 2 }}>
+      <View className="flex-col items-center justify-center" style={{ width: 20, marginTop: 2 }}>
         {/* Row 1: Blue dot for new tasks */}
         <View style={{ height: 17, justifyContent: 'center' }}>
           {task.isNew && (
-            <View className="h-[9px] w-[9px] rounded-full" style={{ backgroundColor: colors.dot.new }} />
+            <View
+              className="h-[9px] w-[9px] rounded-full"
+              style={{ backgroundColor: colors.dot.new }}
+            />
           )}
         </View>
 
@@ -169,7 +168,10 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
         {/* Row 3: Red dot for SLA tasks */}
         <View style={{ height: 24, justifyContent: 'center' }}>
           {task.variant === 'sla' && (
-            <View className="h-[9px] w-[9px] rounded-full" style={{ backgroundColor: colors.dot.sla }} />
+            <View
+              className="h-[9px] w-[9px] rounded-full"
+              style={{ backgroundColor: colors.dot.sla }}
+            />
           )}
         </View>
       </View>
@@ -180,7 +182,7 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
         <View className="flex-row items-center justify-between">
           <Text
             numberOfLines={1}
-            className="mr-2 flex-1 text-[16px] font-semibold"
+            className="lex-1 text-[16px] font-semibold"
             style={{ color: colors.text.primary }}>
             {titleTruncated}
           </Text>
@@ -195,7 +197,7 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
         <View className="mt-1 flex-row items-center justify-between">
           <Text
             numberOfLines={1}
-            className="mr-2 flex-1 text-[16px]"
+            className="flex-1 text-[16px]"
             style={{ color: colors.text.primary }}>
             {modelInfoTruncated}
           </Text>
@@ -207,7 +209,7 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
         {/* Row 3: Variant-specific content + (Action Needed if appointed) */}
         {task.variant === 'sla' && (
           <View className="mt-1 flex-row items-center justify-between">
-            <View className="mr-2 flex-1 flex-row items-center">
+            <View className="flex-1 flex-row items-center">
               <View
                 className="flex-row flex-wrap"
                 style={{ backgroundColor: colors.sla.background }}>
