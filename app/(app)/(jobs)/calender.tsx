@@ -87,12 +87,11 @@ export default function Calender() {
     monthTextColor: colors.grey,
     textDayFontSize: 20,
     textMonthFontSize: 16,
-    weekVerticalMargin: 6, //space between rows
+    weekVerticalMargin: 4,
     'stylesheet.day.basic': {
       base: {
-        width: 34,
-        height: 34,
-        borderRadius: 100,
+        width: 36,
+        height: 36,
         alignItems: 'center',
         justifyContent: 'start',
       },
