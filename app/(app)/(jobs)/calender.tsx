@@ -76,7 +76,6 @@ export default function Calender() {
     selectedDayBackgroundColor: '#EB4F3E',
     selectedDayTextColor: colors.background,
     unselectedDayTextColor: '#212529',
-    textDayFontWeight: '500' as const,
     textDayHeaderFontSize: 14,
     todayTextColor: colors.primary,
     dayTextColor: '#212529',
@@ -85,15 +84,17 @@ export default function Calender() {
     selectedDotColor: colors.background,
     arrowColor: colors.primary,
     monthTextColor: colors.grey,
-    textDayFontSize: 20,
     textMonthFontSize: 16,
-    weekVerticalMargin: 4,
+    weekVerticalMargin: 6,
+    textDayFontSize: 20,
     'stylesheet.day.basic': {
-      base: {
-        width: 36,
-        height: 36,
-        alignItems: 'center',
-        justifyContent: 'start',
+      text: {
+        fontSize: 20,
+        lineHeight: 32,
+        fontWeight: '500',
+        textAlignVertical: 'end',
+        textAlign: 'center',
+
       },
     },
   };
@@ -161,7 +162,7 @@ export default function Calender() {
           data={tasks}
           renderItem={({ item }) => (
             <TaskCard
-              className="px-4 pb-3 pt-4"
+              className="px-2 pb-3 pt-4"
               task={item}
               onAccept={handleAcceptTask}
               onReject={handleRejectTask}
