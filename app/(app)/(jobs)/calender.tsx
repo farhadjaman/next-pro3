@@ -133,7 +133,8 @@ export default function Calender() {
         <View className="justify-center p-3">
           <SearchInput textContentType="none" autoComplete="off" />
         </View>
-        <ExpandableCalendar className="flex-1"
+        <ExpandableCalendar
+          className="flex-1"
           theme={calendarTheme}
           firstDay={1}
           enableSwipeMonths

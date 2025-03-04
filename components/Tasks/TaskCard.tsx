@@ -28,7 +28,7 @@ const createColorScheme = (themeColors: any) => ({
     background: 'rgba(53, 119, 227, 0.1)', // Light blue background with opacity
   },
   status: {
-    allocated: '#000000', // Black for allocated status
+    allocated: '#5E5E5E', // Black for allocated status
     actionNeeded: '#5E5E5E', // Gray for "Action Needed"
     cancel: '#5E5E5E', // Gray for cancel
   },
@@ -115,175 +115,165 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
   //for first row
   const taskId = task.taskId;
   const title = task.title;
-  const titleTruncated = truncateText(`${taskId} ${title}`, 20);
+  const titleTruncated = truncateText(`${taskId} ${title}`, 40);
 
   //for second row
   const type = getFormattedType(task.type);
   const model = task.equipment.model;
   const serialNumber = task.equipment.serialNumber;
   const modelInfo = `${type} • ${model} • ${serialNumber}`;
-  const modelInfoTruncated = truncateText(modelInfo, 28);
+  const modelInfoTruncated = truncateText(modelInfo, 36);
+
+  //for third row
+  //for SLA
+  const SLA = task.sla ? `SLA ${task.sla}` : '';
+  const SLAdate = task.slaDate
+    ? `${formatDate(task.slaDate)} • ${formatTimeShort(task.slaDate)}`
+    : '';
+  const SLAinfo = `${SLA} ${SLAdate}`;
+  const SLAinfoTruncated = truncateText(SLAinfo, 28);
+  //for Expected Dates
+  const expectedDates = task.expectedDates
+    ? `${formatDate(task.expectedDates.start)} ${formatTimeShort(task.expectedDates.start)} → ${formatDate(task.expectedDates.end)} ${formatTimeShort(task.expectedDates.end)}`
+    : '';
+  const expectedDatesTruncated = truncateText(expectedDates, 28);
 
   return (
-    <ReanimatedSwipeable>
-      <View
-        className={`flex-row items-start gap-0.5 ${className}`}
-        style={{
-          backgroundColor: colors.card,
-          borderBottomWidth: 1,
-          borderBottomColor: colors.border,
-          ...styles,
-        }}>
-        {/* Column 1: Left column with dots */}
-        <View className="mr-2" style={{ width: 10 }}>
-          {/* Row 1: Blue dot for new tasks */}
-          <View style={{ height: 24, justifyContent: 'center' }}>
-            {task.isNew && (
-              <View
-                className="h-1.5 w-1.5 rounded-full"
-                style={{ backgroundColor: colors.dot.new }}
-              />
-            )}
-          </View>
-
-          {/* Row 2: Empty space */}
-          <View style={{ height: 24 }} />
-
-          {/* Row 3: Red dot for SLA tasks */}
-          <View style={{ height: 24, justifyContent: 'center' }}>
-            {task.variant === 'sla' && (
-              <View
-                className="h-1.5 w-1.5 rounded-full"
-                style={{ backgroundColor: colors.dot.sla }}
-              />
-            )}
-          </View>
+    <View
+      className={`flex-row items-start gap-0.5 ${className}`}
+      style={{
+        backgroundColor: colors.card,
+        borderBottomWidth: 1,
+        borderBottomColor: colors.border,
+        ...styles,
+      }}>
+      {/* Column 1: Left column with dots */}
+      <View style={{ width: 12, marginTop: 2 }}>
+        {/* Row 1: Blue dot for new tasks */}
+        <View style={{ height: 20, justifyContent: 'center' }}>
+          {task.isNew && (
+            <View className="h-2 w-2 rounded-full" style={{ backgroundColor: colors.dot.new }} />
+          )}
         </View>
 
-        {/* Column 2: Main content */}
-        <View className="flex-1 flex-col justify-center">
-          {/* Row 1: Task ID + Title */}
-          <View className="flex-row items-center justify-between">
-            <Text
-              numberOfLines={1}
-              className="mr-2 flex-1 text-[16px] font-semibold"
-              style={{ color: colors.text.primary }}>
-              {task.taskId} {truncateText(task.title, 20)}
-            </Text>
-            <View className="flex-row items-center">
-              <Text className="mr-1 text-[16px] font-medium" style={{ color: colors.text.primary }}>
-                {formatTime(task.dateTime.start)}
-              </Text>
-            </View>
-          </View>
+        {/* Row 2: Empty space */}
+        <View style={{ height: 22 }} />
 
-          {/* Row 2: Type, Equipment */}
-          <View className="mt-1 flex-row items-center justify-between">
-            <Text
-              numberOfLines={1}
-              className="mr-2 flex-1 text-[16px]"
-              style={{ color: colors.text.primary }}>
-              {modelInfoTruncated}
-            </Text>
-            <Text className="text-[16px] font-medium " style={{ color: colors.text.tertiary }}>
-              {formatTime(task.dateTime.end)}
-            </Text>
-          </View>
-
-          {/* Row 3: Variant-specific content + (Action Needed if appointed) */}
+        {/* Row 3: Red dot for SLA tasks */}
+        <View style={{ height: 24, justifyContent: 'center' }}>
           {task.variant === 'sla' && (
-            <View className="mt-1 flex-row items-center justify-between">
-              <View className="mr-2 flex-1 flex-row items-center">
-                <View
-                  className="flex-row flex-wrap"
-                  style={{ backgroundColor: colors.sla.background }}>
-                  <Text
-                    numberOfLines={1}
-                    className="text-[16px]"
-                    style={{ color: colors.sla.text }}>
-                    SLA {task.sla} • {task.slaDate ? formatDate(task.slaDate) : ''} •{' '}
-                    {task.slaDate ? formatTimeShort(task.slaDate) : ''}
-                  </Text>
-                </View>
-              </View>
-              {task.isAppointed && (
-                <Text className="text-[16px]" style={{ color: colors.status.actionNeeded }}>
-                  Action Needed
-                </Text>
-              )}
-            </View>
+            <View className="h-2 w-2 rounded-full" style={{ backgroundColor: colors.dot.sla }} />
           )}
-
-          {task.variant === 'expected_dates' && (
-            <View className="mt-1 flex-row items-center justify-between">
-              <View style={{ backgroundColor: colors.dates.background }}>
-                <Text
-                  numberOfLines={1}
-                  className="text-[16px] font-medium"
-                  style={{ color: colors.dates.text }}>
-                  {truncateText(
-                    task.expectedDates
-                      ? `${formatDate(task.expectedDates.start)} ${formatTimeShort(
-                          task.expectedDates.start
-                        )} → ${formatDate(task.expectedDates.end)} ${formatTimeShort(
-                          task.expectedDates.end
-                        )}`
-                      : '',
-                    20
-                  )}
-                </Text>
-              </View>
-              {task.isAppointed && (
-                <Text className="text-[16px]" style={{ color: colors.status.actionNeeded }}>
-                  Action Needed
-                </Text>
-              )}
-            </View>
-          )}
-
-          {task.variant === 'job_comment' && (
-            <View className="mt-1 flex-row items-center justify-between">
-              <Text
-                numberOfLines={1}
-                className="text-[16px]"
-                style={{ color: colors.text.tertiary }}>
-                {truncateText(task.jobComment || '', 20)}
-              </Text>
-              {task.isAppointed && (
-                <Text className="text-[16px]" style={{ color: colors.status.actionNeeded }}>
-                  Action Needed
-                </Text>
-              )}
-            </View>
-          )}
-
-          {/* Row 4: Location details + status */}
-          <View className="mt-1 flex-row items-center justify-between">
-            <Text numberOfLines={1} style={{ color: colors.text.tertiary }} className="text-[16px]">
-              {truncateText(`${task.location.postalCode} • ${task.location.city}`, 30)}
-            </Text>
-
-            {task.isAppointed ? (
-              <Text
-                style={{ color: colors.status.cancel, width: 70 }}
-                className="text-right text-[16px] font-medium">
-                CANCEL
-              </Text>
-            ) : (
-              <Text
-                style={{ color: colors.status.allocated, width: 100 }}
-                className="text-right text-[16px] font-medium">
-                ALLOCATED
-              </Text>
-            )}
-          </View>
-        </View>
-
-        {/* Column 3: Chevron arrow */}
-        <View className="mt-1 justify-center">
-          <FontAwesome6 name="chevron-right" size={12} color={colors.text.tertiary} />
         </View>
       </View>
-    </ReanimatedSwipeable>
+
+      {/* Column 2: Main content */}
+      <View className="flex-1 flex-col justify-center">
+        {/* Row 1: Task ID + Title */}
+        <View className="flex-row items-center justify-between">
+          <Text
+            numberOfLines={1}
+            className="mr-2 flex-1 text-[16px] font-semibold"
+            style={{ color: colors.text.primary }}>
+            {titleTruncated}
+          </Text>
+          <View className="flex-row items-center">
+            <Text className="text-[16px] font-medium" style={{ color: colors.text.primary }}>
+              {formatTime(task.dateTime.start)}
+            </Text>
+          </View>
+        </View>
+
+        {/* Row 2: Type, Equipment */}
+        <View className="mt-1 flex-row items-center justify-between">
+          <Text
+            numberOfLines={1}
+            className="mr-2 flex-1 text-[16px]"
+            style={{ color: colors.text.primary }}>
+            {modelInfoTruncated}
+          </Text>
+          <Text className="text-[16px] font-medium " style={{ color: colors.text.tertiary }}>
+            {formatTime(task.dateTime.end)}
+          </Text>
+        </View>
+
+        {/* Row 3: Variant-specific content + (Action Needed if appointed) */}
+        {task.variant === 'sla' && (
+          <View className="mt-1 flex-row items-center justify-between">
+            <View className="mr-2 flex-1 flex-row items-center">
+              <View
+                className="flex-row flex-wrap"
+                style={{ backgroundColor: colors.sla.background }}>
+                <Text numberOfLines={1} className="text-[16px]" style={{ color: colors.sla.text }}>
+                  {SLAinfoTruncated}
+                </Text>
+              </View>
+            </View>
+            {task.isAppointed && (
+              <Text className="text-[16px]" style={{ color: colors.status.actionNeeded }}>
+                Action Needed
+              </Text>
+            )}
+          </View>
+        )}
+
+        {task.variant === 'expected_dates' && (
+          <View className="mt-1 flex-row items-center justify-between">
+            <View style={{ backgroundColor: colors.dates.background }}>
+              <Text
+                numberOfLines={1}
+                className="text-[16px] font-medium"
+                style={{ color: colors.dates.text }}>
+                {expectedDatesTruncated}
+              </Text>
+            </View>
+            {task.isAppointed && (
+              <Text className="text-[16px]" style={{ color: colors.status.actionNeeded }}>
+                Action Needed
+              </Text>
+            )}
+          </View>
+        )}
+
+        {task.variant === 'job_comment' && (
+          <View className="mt-1 flex-row items-center justify-between">
+            <Text numberOfLines={1} className="text-[16px]" style={{ color: colors.text.tertiary }}>
+              {truncateText(task.jobComment || '', 20)}
+            </Text>
+            {task.isAppointed && (
+              <Text className="text-[16px]" style={{ color: colors.status.actionNeeded }}>
+                Action Needed
+              </Text>
+            )}
+          </View>
+        )}
+
+        {/* Row 4: Location details + status */}
+        <View className="mt-1 flex-row items-center justify-between">
+          <Text numberOfLines={1} style={{ color: colors.text.tertiary }} className="text-[16px]">
+            {truncateText(`${task.location.postalCode} • ${task.location.city}`, 30)}
+          </Text>
+
+          {task.isAppointed ? (
+            <Text
+              style={{ color: colors.status.cancel, width: 70 }}
+              className="text-right text-[16px] font-medium">
+              CANCEL
+            </Text>
+          ) : (
+            <Text
+              style={{ color: colors.status.allocated, width: 100 }}
+              className="text-right text-[16px] font-medium">
+              ALLOCATED
+            </Text>
+          )}
+        </View>
+      </View>
+
+      {/* Column 3: Chevron arrow */}
+      <View className="mt-1 justify-center">
+        <FontAwesome6 name="chevron-right" size={12} color={colors.text.tertiary} />
+      </View>
+    </View>
   );
 }
