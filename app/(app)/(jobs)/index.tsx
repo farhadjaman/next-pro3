@@ -1,7 +1,8 @@
+import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import React, { useCallback, useMemo, useRef } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+
 import TaskMap from '~/components/Tasks/TaskMap';
 import { useColorScheme } from '~/lib/useColorScheme';
 

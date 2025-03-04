@@ -44,6 +44,7 @@ type TaskCardProps = {
   styles?: {
     [key: string]: any;
   };
+  className?: string;
   onAccept?: (taskId: string) => void;
   onReject?: (taskId: string) => void;
 };
@@ -65,56 +66,68 @@ function getFormattedType(type: string): string {
   }
 }
 
-export function TaskCard({ task, styles, onAccept, onReject }: TaskCardProps) {
+// Format time like "10:00 AM"
+const formatTime = (dateString: string) => {
+  if (!dateString) return '';
+  try {
+    const date = new Date(dateString);
+    return format(date, 'h:mm a').toUpperCase();
+  } catch (error) {
+    console.error('Error formatting time:', error);
+    return '';
+  }
+};
+
+// Format date like "Wed 5/3/25"
+const formatDate = (dateString: string) => {
+  if (!dateString) return '';
+  try {
+    const date = new Date(dateString);
+    return format(date, 'EEE M/d/yy');
+  } catch (error) {
+    console.error('Error formatting date:', error);
+    return '';
+  }
+};
+
+// Format time like "18:30"
+const formatTimeShort = (dateString: string) => {
+  if (!dateString) return '';
+  try {
+    const date = new Date(dateString);
+    return format(date, 'HH:mm');
+  } catch (error) {
+    console.error('Error formatting time short:', error);
+    return '';
+  }
+};
+
+// Truncate text with ellipsis
+const truncateText = (text: string, maxLength: number) => {
+  if (!text) return '';
+  return text.length > maxLength ? text.substring(0, maxLength) + '..' : text;
+};
+
+export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCardProps) {
   const { colors: themeColors } = useColorScheme();
   const colors = createColorScheme(themeColors);
 
-  // Format time like "10:00 AM"
-  const formatTime = (dateString: string) => {
-    if (!dateString) return '';
-    try {
-      const date = new Date(dateString);
-      return format(date, 'h:mm a').toUpperCase();
-    } catch (error) {
-      console.error('Error formatting time:', error);
-      return '';
-    }
-  };
+  //for first row
+  const taskId = task.taskId;
+  const title = task.title;
+  const titleTruncated = truncateText(`${taskId} ${title}`, 20);
 
-  // Format date like "Wed 5/3/25"
-  const formatDate = (dateString: string) => {
-    if (!dateString) return '';
-    try {
-      const date = new Date(dateString);
-      return format(date, 'EEE M/d/yy');
-    } catch (error) {
-      console.error('Error formatting date:', error);
-      return '';
-    }
-  };
-
-  // Format time like "18:30"
-  const formatTimeShort = (dateString: string) => {
-    if (!dateString) return '';
-    try {
-      const date = new Date(dateString);
-      return format(date, 'HH:mm');
-    } catch (error) {
-      console.error('Error formatting time short:', error);
-      return '';
-    }
-  };
-
-  // Truncate text with ellipsis
-  const truncateText = (text: string, maxLength: number) => {
-    if (!text) return '';
-    return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
-  };
+  //for second row
+  const type = getFormattedType(task.type);
+  const model = task.equipment.model;
+  const serialNumber = task.equipment.serialNumber;
+  const modelInfo = `${type} • ${model} • ${serialNumber}`;
+  const modelInfoTruncated = truncateText(modelInfo, 28);
 
   return (
     <ReanimatedSwipeable>
       <View
-        className="flex-row items-start gap-0.5 p-3 py-3"
+        className={`flex-row items-start gap-0.5 ${className}`}
         style={{
           backgroundColor: colors.card,
           borderBottomWidth: 1,
@@ -126,7 +139,10 @@ export function TaskCard({ task, styles, onAccept, onReject }: TaskCardProps) {
           {/* Row 1: Blue dot for new tasks */}
           <View style={{ height: 24, justifyContent: 'center' }}>
             {task.isNew && (
-              <View className="h-2 w-2 rounded-full" style={{ backgroundColor: colors.dot.new }} />
+              <View
+                className="h-1.5 w-1.5 rounded-full"
+                style={{ backgroundColor: colors.dot.new }}
+              />
             )}
           </View>
 
@@ -136,7 +152,10 @@ export function TaskCard({ task, styles, onAccept, onReject }: TaskCardProps) {
           {/* Row 3: Red dot for SLA tasks */}
           <View style={{ height: 24, justifyContent: 'center' }}>
             {task.variant === 'sla' && (
-              <View className="h-2 w-2 rounded-full" style={{ backgroundColor: colors.dot.sla }} />
+              <View
+                className="h-1.5 w-1.5 rounded-full"
+                style={{ backgroundColor: colors.dot.sla }}
+              />
             )}
           </View>
         </View>
@@ -149,7 +168,7 @@ export function TaskCard({ task, styles, onAccept, onReject }: TaskCardProps) {
               numberOfLines={1}
               className="mr-2 flex-1 text-[16px] font-semibold"
               style={{ color: colors.text.primary }}>
-              {task.taskId} {truncateText(task.title, 25)}
+              {task.taskId} {truncateText(task.title, 20)}
             </Text>
             <View className="flex-row items-center">
               <Text className="mr-1 text-[16px] font-medium" style={{ color: colors.text.primary }}>
@@ -164,10 +183,9 @@ export function TaskCard({ task, styles, onAccept, onReject }: TaskCardProps) {
               numberOfLines={1}
               className="mr-2 flex-1 text-[16px]"
               style={{ color: colors.text.primary }}>
-              {getFormattedType(task.type)} • {task.equipment.model} •{' '}
-              {truncateText(task.equipment.serialNumber, 12)}
+              {modelInfoTruncated}
             </Text>
-            <Text className="text-[16px] font-medium" style={{ color: colors.text.tertiary }}>
+            <Text className="text-[16px] font-medium " style={{ color: colors.text.tertiary }}>
               {formatTime(task.dateTime.end)}
             </Text>
           </View>

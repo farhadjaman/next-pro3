@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useRef, useMemo } from 'react';
 import { View, StyleSheet } from 'react-native';
 import GoogleMapView, { MapRef } from '~/components/Tasks/GoogleMapView';
-import CarouselComponent from '~/components/Tasks/TaskSlider';
+import TaskCarousel from '~/components/Tasks/TaskSlider';
 import { demoTasks } from '~/lib/demoData';
 import { TaskLocation } from '~/types/task';
 
@@ -46,7 +46,7 @@ const TaskMapWithCarousel: React.FC = () => {
       </View>
 
       <View style={carouselStyle}>
-        <CarouselComponent />
+        <TaskCarousel />
       </View>
     </View>
   );

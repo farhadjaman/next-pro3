@@ -73,7 +73,7 @@ export default function Calender() {
 
   const calendarTheme = {
     textSectionTitleColor: '#1f2937',
-    selectedDayBackgroundColor: colors.primary,
+    selectedDayBackgroundColor: '#EB4F3E',
     selectedDayTextColor: colors.background,
     unselectedDayTextColor: '#212529',
     textDayFontWeight: '500' as const,
@@ -85,22 +85,15 @@ export default function Calender() {
     selectedDotColor: colors.background,
     arrowColor: colors.primary,
     monthTextColor: colors.grey,
-    textDayFontSize: 18,
+    textDayFontSize: 20,
     textMonthFontSize: 16,
     textDayFontFamily: 'System',
     dayVerticalMargin: 0,
     dayHorizontalMargin: 0,
     dayVerticalPadding: 1,
-    dayHorizontalPadding: 1,
-    dayComponentHeight: 24,
+    dayHorizontalPadding: 2,
+    dayComponentHeight: 30,
     dayHeaderMarginBottom: 4,
-    'stylesheet.expandableCalendar.main': {
-      week: {
-        marginVertical: 3,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-      },
-    },
   };
 
   function handleAcceptTask(taskId: string): void {
@@ -111,7 +104,7 @@ export default function Calender() {
   const formatMonth = (date: XDate | undefined) => {
     if (!date) return '';
     try {
-      return date.toString('MMMM yyyy');
+      return date.toString('MMMM yyyy').toUpperCase();
     } catch (error) {
       console.log('Error formatting date:', error);
       return '';
@@ -166,7 +159,7 @@ export default function Calender() {
           data={tasks}
           renderItem={({ item }) => (
             <TaskCard
-              styles={{ paddingHorizontal: 24, paddingVertical: 10 }}
+              className="px-4 pb-3 pt-4"
               task={item}
               onAccept={handleAcceptTask}
               onReject={handleRejectTask}
