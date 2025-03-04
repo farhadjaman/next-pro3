@@ -12,14 +12,7 @@ import { useColorScheme } from '~/lib/useColorScheme';
 import { Task } from '~/types/task';
 
 function handleRejectTask() {}
-
-const tasks: Task[] = demoTasks.map((task) => ({
-  ...task,
-  dateTime: {
-    start: new Date(task.dateTime.start),
-    end: new Date(task.dateTime.end),
-  },
-}));
+const tasks: Task[] = demoTasks as Task[];
 
 LocaleConfig.locales = LocaleConfig.locales || {};
 LocaleConfig.locales['en'] = {
@@ -68,21 +61,15 @@ export default function Calender() {
 
   const markedDates = {
     '2025-03-08': {
-      dots: [
-        { key: 'event1', color: colors.primary },
-      ],
+      dots: [{ key: 'event1', color: colors.primary }],
     },
     '2025-03-09': {
-      dots: [
-        { key: 'event2', color: colors.primary },
-      ],
+      dots: [{ key: 'event2', color: colors.primary }],
     },
     '2025-03-27': {
-      dots: [
-        { key: 'event2', color: colors.primary },
-      ],
+      dots: [{ key: 'event2', color: colors.primary }],
     },
-  }
+  };
 
   const calendarTheme = {
     textSectionTitleColor: '#1f2937',
@@ -108,10 +95,6 @@ export default function Calender() {
     dayComponentHeight: 24,
     dayHeaderMarginBottom: 4,
     'stylesheet.expandableCalendar.main': {
-      knob: {
-        height: 5,
-        width: 35,
-      },
       week: {
         marginVertical: 3,
         flexDirection: 'row',
@@ -182,10 +165,15 @@ export default function Calender() {
           estimatedItemSize={100}
           data={tasks}
           renderItem={({ item }) => (
-            <TaskCard styles={{ paddingHorizontal: 24, paddingVertical:10 }} task={item} onAccept={handleAcceptTask} onReject={handleRejectTask} />
+            <TaskCard
+              styles={{ paddingHorizontal: 24, paddingVertical: 10 }}
+              task={item}
+              onAccept={handleAcceptTask}
+              onReject={handleRejectTask}
+            />
           )}
           keyExtractor={(item) => item.id}
-          ItemSeparatorComponent={() => <View className="h-0.5 border-border" />}
+          ItemSeparatorComponent={() => <View className="h-0.2" />}
         />
       </SafeAreaView>
     </CalendarProvider>

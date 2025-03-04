@@ -10,17 +10,9 @@ import { store } from '~/store';
 const { width: WINDOW_WIDTH } = Dimensions.get('window');
 
 const CARD_WIDTH = WINDOW_WIDTH * 0.9;
-const CAROUSEL_HEIGHT = 100;
+const CAROUSEL_HEIGHT = 120;
 
-const tasks: Task[] = Array.isArray(demoTasks)
-  ? demoTasks.map((task) => ({
-      ...task,
-      dateTime: {
-        start: new Date(task.dateTime.start),
-        end: new Date(task.dateTime.end),
-      },
-    }))
-  : [];
+const tasks: Task[] = Array.isArray(demoTasks) ? (demoTasks as Task[]) : [];
 
 const TaskCarousel: React.FC = () => {
   const progress = useSharedValue<number>(0);
@@ -47,9 +39,14 @@ const TaskCarousel: React.FC = () => {
         data={tasks}
         renderItem={({ item }) => (
           <View style={styles.cardWrapper}>
-            <TaskCard styles={{
-              borderRadius:16
-            }} task={item} onAccept={handleAcceptTask} onReject={handleRejectTask} />
+            <TaskCard
+              styles={{
+                borderRadius: 16,
+              }}
+              task={item}
+              onAccept={handleAcceptTask}
+              onReject={handleRejectTask}
+            />
           </View>
         )}
         width={CARD_WIDTH}

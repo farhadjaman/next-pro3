@@ -4,22 +4,30 @@ import React, { useEffect, useCallback, ReactNode } from 'react';
 import { Sheet, useSheetRef } from '~/components/nativewindui/Sheet';
 
 type BottomSheetProps = {
+  index?: number;
   snapPoints: (string | number)[];
   isOpen?: boolean;
   onClose?: () => void;
   children: ReactNode;
 };
 
-export function BottomSheet({ snapPoints, isOpen, onClose, children }: BottomSheetProps) {
+export function BottomSheet({
+  index = -1,
+  snapPoints,
+  isOpen,
+  onClose,
+  children,
+}: BottomSheetProps) {
   const bottomSheetRef = useSheetRef();
 
   useEffect(() => {
-    if (isOpen) {
+    console.log('isOpen', isOpen, index);
+    if (isOpen || index > -1) {
       bottomSheetRef.current?.present();
     } else {
       bottomSheetRef.current?.dismiss();
     }
-  }, [isOpen]);
+  }, [isOpen, index]);
 
   const handleSheetChanges = useCallback(
     (index: number) => {

@@ -214,227 +214,629 @@
   "tasks": [
     {
       "id": "1",
-      "title": "Coffee Machine Repair",
-      "type": "repair",
+      "title": "Hotel Martinhal Lisbon Oriente",
+      "type": "installation",
       "dateTime": {
-        "start": "2025-01-15T10:00:00",
-        "end": "2025-01-15T12:30:00"
+        "start": "2025-03-05T10:00:00",
+        "end": "2025-03-05T10:30:00"
       },
       "location": {
-        "name": "PRAÇA DO COMÉRCIO",
-        "address": "AVENIDA DA LIBERDADE 138",
+        "name": "Hotel Martinhal Lisbon Oriente",
+        "address": "Avenida Dom João II 45",
         "postalCode": "1250-140",
         "city": "LISBOA",
         "lat": 38.7078,
         "long": -9.1366
       },
       "equipment": {
-        "model": "S30 Perfect Touch",
-        "serialNumber": "22 749 SPT a 0073 1 J Z 4L x"
+        "model": "Momento 120",
+        "serialNumber": "22075232X001"
       },
       "technician": {
         "name": "Mário Afonso",
         "id": "85112463"
       },
-      "taskId": "162001",
-      "status": "completed",
-      "sla": "SLA 8H, 15/1/25 @ 18:30"
+      "taskId": "162045",
+      "isAppointed": false,
+      "variant": "sla",
+      "sla": "8H",
+      "slaDate": "2025-03-05T18:30:00",
+      "isNew": true
     },
     {
       "id": "2",
-      "title": "Machine Withdrawal",
-      "type": "withdrawal",
+      "title": "Hotel Vila Galé Coimbra",
+      "type": "repair",
       "dateTime": {
-        "start": "2025-01-20T15:00:00",
-        "end": "2025-01-20T16:30:00"
+        "start": "2025-03-06T09:00:00",
+        "end": "2025-03-06T09:30:00"
       },
       "location": {
-        "name": "SÃO JORGE CASTLE",
-        "address": "PRAÇA DO COMÉRCIO 31-34",
-        "postalCode": "1100-148",
-        "city": "LISBOA",
-        "lat": 38.7139,
-        "long": -9.1334
+        "name": "Hotel Vila Galé Coimbra",
+        "address": "Rua Abel Dias Urbano 20",
+        "postalCode": "3000-001",
+        "city": "COIMBRA",
+        "lat": 40.2033,
+        "long": -8.4293
       },
       "equipment": {
-        "model": "Momento 200",
-        "serialNumber": "20 345 MM2 k 0015 2 L S 3H n"
+        "model": "Virtuoso 65",
+        "serialNumber": "24112VR6V0082"
       },
       "technician": {
         "name": "João Almeida",
         "id": "92387416"
       },
-      "taskId": "162045",
-      "status": "in_progress",
-      "sla": "SLA 12H, 21/1/25 @ 09:00"
+      "taskId": "162046",
+      "isAppointed": true,
+      "variant": "sla",
+      "sla": "4H",
+      "slaDate": "2025-03-06T13:00:00",
+      "isNew": true
     },
     {
       "id": "3",
-      "title": "Grinder Component Exchange",
+      "title": "Sheraton Lisboa Hotel & Spa",
       "type": "component_exchange",
       "dateTime": {
-        "start": "2025-01-25T14:00:00",
-        "end": "2025-01-25T15:30:00"
+        "start": "2025-03-07T11:00:00",
+        "end": "2025-03-07T11:30:00"
       },
       "location": {
-        "name": "HOTEL INTERCONTINENTAL CASCAIS-ESTORIL",
-        "address": "AVENIDA MARGINAL 8023",
-        "postalCode": "2765-249",
-        "city": "ESTORIL",
-        "lat": 38.6979,
-        "long": -9.3966
-      },
-      "equipment": {
-        "model": "Appia Life Compact",
-        "serialNumber": "24 082 ALC h 0052 3 M T 5S r"
-      },
-      "technician": {
-        "name": "Tiago Mendes",
-        "id": "94621703"
-      },
-      "taskId": "162100",
-      "status": "new",
-      "sla": "SLA 8H, 25/1/25 @ 22:00"
-    },
-    {
-      "id": "4",
-      "title": "Coffee Machine Repair",
-      "type": "repair",
-      "dateTime": {
-        "start": "2025-02-05T10:00:00",
-        "end": "2025-02-05T12:30:00"
-      },
-      "location": {
-        "name": "HOTEL VILA GALÉ PORTO",
-        "address": "AV. FERNÃO DE MAGALHÃES 7",
-        "postalCode": "4300-190",
-        "city": "PORTO",
-        "lat": 41.1496,
-        "long": -8.6109
-      },
-      "equipment": {
-        "model": "Virtuoso 65",
-        "serialNumber": "24 112 VR6 n 0021 5 P T 2F a"
-      },
-      "technician": {
-        "name": "Miguel Costa",
-        "id": "85112463"
-      },
-      "taskId": "162145",
-      "status": "new",
-      "sla": "SLA 4H, 05/2/25 @ 14:30"
-    },
-    {
-      "id": "5",
-      "title": "Machine Withdrawal",
-      "type": "withdrawal",
-      "dateTime": {
-        "start": "2025-02-10T15:00:00",
-        "end": "2025-02-10T16:30:00"
-      },
-      "location": {
-        "name": "BELÉM TOWER",
-        "address": "PRAÇA DO COMÉRCIO 31-34",
-        "postalCode": "1100-148",
-        "city": "LISBOA",
-        "lat": 38.6916,
-        "long": -9.2159
-      },
-      "equipment": {
-        "model": "Momento 200",
-        "serialNumber": "20 345 MM2 k 0015 2 L S 3H n"
-      },
-      "technician": {
-        "name": "Carolina Silva",
-        "id": "92387416"
-      },
-      "taskId": "162201",
-      "status": "in_progress",
-      "sla": "SLA 12H, 11/2/25 @ 09:00"
-    },
-    {
-      "id": "6",
-      "title": "Preventive Maintenance",
-      "type": "preventive",
-      "dateTime": {
-        "start": "2025-02-15T08:30:00",
-        "end": "2025-02-15T10:00:00"
-      },
-      "location": {
-        "name": "PARQUE EDUARDO VII",
-        "address": "RUA JÁCOME DE BAENA 37",
-        "postalCode": "1300-125",
+        "name": "Sheraton Lisboa Hotel & Spa",
+        "address": "Rua Latino Coelho 1",
+        "postalCode": "1069-025",
         "city": "LISBOA",
         "lat": 38.7285,
         "long": -9.1525
       },
       "equipment": {
-        "model": "Tempesta 120",
-        "serialNumber": "23 516 TP1 j 0034 6 D R 2K p"
-      },
-      "technician": {
-        "name": "André Oliveira",
-        "id": "87045219"
-      },
-      "taskId": "162248",
-      "status": "new",
-      "sla": "SLA 24H, 16/2/25 @ 10:30"
-    },
-    {
-      "id": "7",
-      "title": "Grinder Component Exchange",
-      "type": "component_exchange",
-      "dateTime": {
-        "start": "2025-02-18T14:00:00",
-        "end": "2025-02-18T15:30:00"
-      },
-      "location": {
-        "name": "HOTEL INTERCONTINENTAL CASCAIS-ESTORIL",
-        "address": "AVENIDA MARGINAL 8023",
-        "postalCode": "2765-249",
-        "city": "ESTORIL",
-        "lat": 38.6979,
-        "long": -9.3966
-      },
-      "equipment": {
         "model": "Appia Life Compact",
-        "serialNumber": "24 082 ALC h 0052 3 M T 5S r"
+        "serialNumber": "24082ALC0052"
       },
       "technician": {
         "name": "Tiago Mendes",
         "id": "94621703"
       },
-      "taskId": "162307",
-      "status": "completed",
-      "sla": "SLA 8H, 18/2/25 @ 22:00"
+      "taskId": "162047",
+      "isAppointed": true,
+      "variant": "sla",
+      "sla": "8H",
+      "slaDate": "2025-03-07T19:00:00",
+      "isNew": false
     },
     {
-      "id": "8",
-      "title": "Water System Repair",
-      "type": "repair",
+      "id": "4",
+      "title": "Hotel InterContinental Porto",
+      "type": "preventive",
       "dateTime": {
-        "start": "2025-02-24T16:00:00",
-        "end": "2025-02-24T18:30:00"
+        "start": "2025-03-08T08:00:00",
+        "end": "2025-03-08T08:30:00"
       },
       "location": {
-        "name": "LX FACTORY",
-        "address": "AVENIDA DA LIBERDADE 185",
-        "postalCode": "1269-050",
-        "city": "LISBOA",
-        "lat": 38.7033,
-        "long": -9.1777
+        "name": "Hotel InterContinental Porto",
+        "address": "Praça da Liberdade 25",
+        "postalCode": "4000-322",
+        "city": "PORTO",
+        "lat": 41.1456,
+        "long": -8.6146
       },
       "equipment": {
         "model": "S30 Perfect Touch",
-        "serialNumber": "22 749 SPT a 0073 1 J Z 4L x"
+        "serialNumber": "22749SPT0073"
+      },
+      "technician": {
+        "name": "Miguel Costa",
+        "id": "85112463"
+      },
+      "taskId": "162048",
+      "isAppointed": false,
+      "variant": "expected_dates",
+      "expectedDates": {
+        "start": "2025-03-08T08:00:00",
+        "end": "2025-03-10T17:00:00"
+      },
+      "isNew": true
+    },
+    {
+      "id": "5",
+      "title": "The Lumiares Hotel & Spa",
+      "type": "withdrawal",
+      "dateTime": {
+        "start": "2025-03-09T14:00:00",
+        "end": "2025-03-09T14:30:00"
+      },
+      "location": {
+        "name": "The Lumiares Hotel & Spa",
+        "address": "Rua do Diário de Notícias 142",
+        "postalCode": "1200-146",
+        "city": "LISBOA",
+        "lat": 38.7134,
+        "long": -9.1433
+      },
+      "equipment": {
+        "model": "Momento 200",
+        "serialNumber": "20345MM20015"
+      },
+      "technician": {
+        "name": "Carolina Silva",
+        "id": "92387416"
+      },
+      "taskId": "162049",
+      "isAppointed": true,
+      "variant": "expected_dates",
+      "expectedDates": {
+        "start": "2025-03-09T14:00:00",
+        "end": "2025-03-12T16:00:00"
+      },
+      "isNew": false
+    },
+    {
+      "id": "6",
+      "title": "Altis Grand Hotel",
+      "type": "installation",
+      "dateTime": {
+        "start": "2025-03-10T09:30:00",
+        "end": "2025-03-10T10:00:00"
+      },
+      "location": {
+        "name": "Altis Grand Hotel",
+        "address": "Rua Castilho 11",
+        "postalCode": "1250-071",
+        "city": "LISBOA",
+        "lat": 38.7207,
+        "long": -9.1495
+      },
+      "equipment": {
+        "model": "Tempesta 120",
+        "serialNumber": "23516TP10034"
+      },
+      "technician": {
+        "name": "André Oliveira",
+        "id": "87045219"
+      },
+      "taskId": "162050",
+      "isAppointed": false,
+      "variant": "expected_dates",
+      "expectedDates": {
+        "start": "2025-03-10T09:30:00",
+        "end": "2025-03-15T12:30:00"
+      },
+      "isNew": true
+    },
+    {
+      "id": "7",
+      "title": "Pestana Palace Lisboa",
+      "type": "repair",
+      "dateTime": {
+        "start": "2025-03-11T15:30:00",
+        "end": "2025-03-11T16:00:00"
+      },
+      "location": {
+        "name": "Pestana Palace Lisboa",
+        "address": "Rua Jau 54",
+        "postalCode": "1300-314",
+        "city": "LISBOA",
+        "lat": 38.704,
+        "long": -9.1803
+      },
+      "equipment": {
+        "model": "S30 Perfect Touch",
+        "serialNumber": "22749SPT0074"
       },
       "technician": {
         "name": "Sofia Martins",
         "id": "93841265"
       },
-      "taskId": "162356",
-      "status": "new",
-      "sla": "SLA 8H, 24/2/25 @ 18:30"
+      "taskId": "162051",
+      "isAppointed": false,
+      "variant": "job_comment",
+      "jobComment": "seleccionar café a maquina dá indicação para tirar...",
+      "isNew": true
+    },
+    {
+      "id": "8",
+      "title": "Hotel Real Palácio",
+      "type": "component_exchange",
+      "dateTime": {
+        "start": "2025-03-12T13:00:00",
+        "end": "2025-03-12T13:30:00"
+      },
+      "location": {
+        "name": "Hotel Real Palácio",
+        "address": "Rua Tomás Ribeiro 115",
+        "postalCode": "1050-228",
+        "city": "LISBOA",
+        "lat": 38.731,
+        "long": -9.149
+      },
+      "equipment": {
+        "model": "Virtuoso 65",
+        "serialNumber": "24112VR60021"
+      },
+      "technician": {
+        "name": "Mário Afonso",
+        "id": "85112463"
+      },
+      "taskId": "162052",
+      "isAppointed": true,
+      "variant": "job_comment",
+      "jobComment": "máquina com saída de café lenta, verificar moinho...",
+      "isNew": false
+    },
+    {
+      "id": "9",
+      "title": "Tivoli Avenida Liberdade",
+      "type": "preventive",
+      "dateTime": {
+        "start": "2025-03-13T10:30:00",
+        "end": "2025-03-13T11:00:00"
+      },
+      "location": {
+        "name": "Tivoli Avenida Liberdade",
+        "address": "Avenida da Liberdade 185",
+        "postalCode": "1269-050",
+        "city": "LISBOA",
+        "lat": 38.7218,
+        "long": -9.1457
+      },
+      "equipment": {
+        "model": "Appia Life Compact",
+        "serialNumber": "24082ALC0053"
+      },
+      "technician": {
+        "name": "Tiago Mendes",
+        "id": "94621703"
+      },
+      "taskId": "162053",
+      "isAppointed": true,
+      "variant": "job_comment",
+      "jobComment": "cliente reportou ruído estranho durante operação...",
+      "isNew": false
+    },
+    {
+      "id": "10",
+      "title": "Corinthia Hotel Lisbon",
+      "type": "installation",
+      "dateTime": {
+        "start": "2025-03-14T09:00:00",
+        "end": "2025-03-14T09:30:00"
+      },
+      "location": {
+        "name": "Corinthia Hotel Lisbon",
+        "address": "Avenida Columbano Bordalo Pinheiro 105",
+        "postalCode": "1099-031",
+        "city": "LISBOA",
+        "lat": 38.7485,
+        "long": -9.1674
+      },
+      "equipment": {
+        "model": "Momento 120",
+        "serialNumber": "22075232X002"
+      },
+      "technician": {
+        "name": "João Almeida",
+        "id": "92387416"
+      },
+      "taskId": "162054",
+      "isAppointed": false,
+      "variant": "sla",
+      "sla": "12H",
+      "slaDate": "2025-03-14T21:00:00",
+      "isNew": true
+    },
+    {
+      "id": "11",
+      "title": "Hotel Olissippo Lapa Palace",
+      "type": "withdrawal",
+      "dateTime": {
+        "start": "2025-03-15T16:00:00",
+        "end": "2025-03-15T16:30:00"
+      },
+      "location": {
+        "name": "Hotel Olissippo Lapa Palace",
+        "address": "Rua do Pau da Bandeira 4",
+        "postalCode": "1249-021",
+        "city": "LISBOA",
+        "lat": 38.7075,
+        "long": -9.1687
+      },
+      "equipment": {
+        "model": "Momento 200",
+        "serialNumber": "20345MM20016"
+      },
+      "technician": {
+        "name": "Carolina Silva",
+        "id": "92387416"
+      },
+      "taskId": "162055",
+      "isAppointed": false,
+      "variant": "sla",
+      "sla": "8H",
+      "slaDate": "2025-03-16T00:00:00",
+      "isNew": false
+    },
+    {
+      "id": "12",
+      "title": "Eurostars Museum",
+      "type": "repair",
+      "dateTime": {
+        "start": "2025-03-16T11:30:00",
+        "end": "2025-03-16T12:00:00"
+      },
+      "location": {
+        "name": "Eurostars Museum",
+        "address": "Rua Cais de Santarém 40",
+        "postalCode": "1100-188",
+        "city": "LISBOA",
+        "lat": 38.7097,
+        "long": -9.1303
+      },
+      "equipment": {
+        "model": "S30 Perfect Touch",
+        "serialNumber": "22749SPT0075"
+      },
+      "technician": {
+        "name": "Miguel Costa",
+        "id": "85112463"
+      },
+      "taskId": "162056",
+      "isAppointed": true,
+      "variant": "expected_dates",
+      "expectedDates": {
+        "start": "2025-03-16T11:30:00",
+        "end": "2025-03-18T15:00:00"
+      },
+      "isNew": true
+    },
+    {
+      "id": "13",
+      "title": "The Yeatman Hotel",
+      "type": "component_exchange",
+      "dateTime": {
+        "start": "2025-03-17T14:30:00",
+        "end": "2025-03-17T15:00:00"
+      },
+      "location": {
+        "name": "The Yeatman Hotel",
+        "address": "Rua do Choupelo",
+        "postalCode": "4400-088",
+        "city": "PORTO",
+        "lat": 41.1335,
+        "long": -8.6142
+      },
+      "equipment": {
+        "model": "Tempesta 120",
+        "serialNumber": "23516TP10035"
+      },
+      "technician": {
+        "name": "André Oliveira",
+        "id": "87045219"
+      },
+      "taskId": "162057",
+      "isAppointed": false,
+      "variant": "job_comment",
+      "jobComment": "substituir moinho e filtros de água...",
+      "isNew": true
+    },
+    {
+      "id": "14",
+      "title": "Valverde Hotel",
+      "type": "installation",
+      "dateTime": {
+        "start": "2025-03-18T08:30:00",
+        "end": "2025-03-18T09:00:00"
+      },
+      "location": {
+        "name": "Valverde Hotel",
+        "address": "Avenida da Liberdade 164",
+        "postalCode": "1250-146",
+        "city": "LISBOA",
+        "lat": 38.7206,
+        "long": -9.1462
+      },
+      "equipment": {
+        "model": "Momento 120",
+        "serialNumber": "22075232X003"
+      },
+      "technician": {
+        "name": "Sofia Martins",
+        "id": "93841265"
+      },
+      "taskId": "162058",
+      "isAppointed": false,
+      "variant": "expected_dates",
+      "expectedDates": {
+        "start": "2025-03-18T08:30:00",
+        "end": "2025-03-20T17:30:00"
+      },
+      "isNew": false
+    },
+    {
+      "id": "15",
+      "title": "Hotel Palácio do Governador",
+      "type": "preventive",
+      "dateTime": {
+        "start": "2025-03-19T10:00:00",
+        "end": "2025-03-19T10:30:00"
+      },
+      "location": {
+        "name": "Hotel Palácio do Governador",
+        "address": "Rua Bartolomeu Dias 117",
+        "postalCode": "1400-030",
+        "city": "LISBOA",
+        "lat": 38.6936,
+        "long": -9.2155
+      },
+      "equipment": {
+        "model": "Virtuoso 65",
+        "serialNumber": "24112VR60022"
+      },
+      "technician": {
+        "name": "Mário Afonso",
+        "id": "85112463"
+      },
+      "taskId": "162059",
+      "isAppointed": true,
+      "variant": "sla",
+      "sla": "24H",
+      "slaDate": "2025-03-20T10:00:00",
+      "isNew": true
+    },
+    {
+      "id": "16",
+      "title": "Santiago de Alfama",
+      "type": "repair",
+      "dateTime": {
+        "start": "2025-03-20T13:30:00",
+        "end": "2025-03-20T14:00:00"
+      },
+      "location": {
+        "name": "Santiago de Alfama",
+        "address": "Rua de Santiago 10",
+        "postalCode": "1100-494",
+        "city": "LISBOA",
+        "lat": 38.7113,
+        "long": -9.1311
+      },
+      "equipment": {
+        "model": "Appia Life Compact",
+        "serialNumber": "24082ALC0054"
+      },
+      "technician": {
+        "name": "Tiago Mendes",
+        "id": "94621703"
+      },
+      "taskId": "162060",
+      "isAppointed": true,
+      "variant": "job_comment",
+      "jobComment": "verificar pressão da bomba e calibrar moinho...",
+      "isNew": false
+    },
+    {
+      "id": "17",
+      "title": "Hotel Mundial",
+      "type": "withdrawal",
+      "dateTime": {
+        "start": "2025-03-21T09:00:00",
+        "end": "2025-03-21T09:30:00"
+      },
+      "location": {
+        "name": "Hotel Mundial",
+        "address": "Praça Martim Moniz 2",
+        "postalCode": "1100-341",
+        "city": "LISBOA",
+        "lat": 38.7157,
+        "long": -9.1376
+      },
+      "equipment": {
+        "model": "Momento 200",
+        "serialNumber": "20345MM20017"
+      },
+      "technician": {
+        "name": "João Almeida",
+        "id": "92387416"
+      },
+      "taskId": "162061",
+      "isAppointed": false,
+      "variant": "expected_dates",
+      "expectedDates": {
+        "start": "2025-03-21T09:00:00",
+        "end": "2025-03-23T16:00:00"
+      },
+      "isNew": true
+    },
+    {
+      "id": "18",
+      "title": "Memmo Príncipe Real",
+      "type": "component_exchange",
+      "dateTime": {
+        "start": "2025-03-22T15:00:00",
+        "end": "2025-03-22T15:30:00"
+      },
+      "location": {
+        "name": "Memmo Príncipe Real",
+        "address": "Rua Dom Pedro V 56",
+        "postalCode": "1250-094",
+        "city": "LISBOA",
+        "lat": 38.7172,
+        "long": -9.1474
+      },
+      "equipment": {
+        "model": "S30 Perfect Touch",
+        "serialNumber": "22749SPT0076"
+      },
+      "technician": {
+        "name": "Carolina Silva",
+        "id": "92387416"
+      },
+      "taskId": "162062",
+      "isAppointed": false,
+      "variant": "sla",
+      "sla": "8H",
+      "slaDate": "2025-03-22T23:00:00",
+      "isNew": false
+    },
+    {
+      "id": "19",
+      "title": "Hotel Vincci Porto",
+      "type": "installation",
+      "dateTime": {
+        "start": "2025-03-23T10:30:00",
+        "end": "2025-03-23T11:00:00"
+      },
+      "location": {
+        "name": "Hotel Vincci Porto",
+        "address": "Alameda Basílio Teles 29",
+        "postalCode": "4150-127",
+        "city": "PORTO",
+        "lat": 41.1535,
+        "long": -8.6387
+      },
+      "equipment": {
+        "model": "Momento 120",
+        "serialNumber": "22075232X004"
+      },
+      "technician": {
+        "name": "Miguel Costa",
+        "id": "85112463"
+      },
+      "taskId": "162063",
+      "isAppointed": false,
+      "variant": "job_comment",
+      "jobComment": "instalação inicial, levar kit completo e ferramentas...",
+      "isNew": true
+    },
+    {
+      "id": "20",
+      "title": "Bairro Alto Hotel",
+      "type": "preventive",
+      "dateTime": {
+        "start": "2025-03-24T08:00:00",
+        "end": "2025-03-24T08:30:00"
+      },
+      "location": {
+        "name": "Bairro Alto Hotel",
+        "address": "Praça Luís de Camões 2",
+        "postalCode": "1200-243",
+        "city": "LISBOA",
+        "lat": 38.7103,
+        "long": -9.1436
+      },
+      "equipment": {
+        "model": "Tempesta 120",
+        "serialNumber": "23516TP10036"
+      },
+      "technician": {
+        "name": "André Oliveira",
+        "id": "87045219"
+      },
+      "taskId": "162064",
+      "isAppointed": false,
+      "variant": "sla",
+      "sla": "12H",
+      "slaDate": "2025-03-24T20:00:00",
+      "isNew": true
     }
   ]
 }

@@ -1,3 +1,4 @@
+import React from 'react';
 import '../global.css';
 import 'expo-dev-client';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
@@ -70,6 +71,7 @@ export default function RootLayout() {
         key={`root-status-bar-${isDarkColorScheme ? 'light' : 'dark'}`}
         style={isDarkColorScheme ? 'light' : 'dark'}
       />
+      {/* Main GestureHandlerRootView for the entire app - all gesture-based components must be children of this */}
       <GestureHandlerRootView style={{ flex: 1 }}>
         <BottomSheetModalProvider>
           <KeyboardProvider statusBarTranslucent navigationBarTranslucent>

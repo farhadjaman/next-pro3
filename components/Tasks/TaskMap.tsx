@@ -1,8 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import React, { useRef } from 'react';
-import { View, StyleSheet, Text, Dimensions } from 'react-native';
-import BottomSheet from '@gorhom/bottom-sheet';
-import { useMemo } from 'react';
+import React, { useRef, useMemo } from 'react';
+import { View, StyleSheet } from 'react-native';
 import GoogleMapView, { MapRef } from '~/components/Tasks/GoogleMapView';
 import CarouselComponent from '~/components/Tasks/TaskSlider';
 import { demoTasks } from '~/lib/demoData';
@@ -21,22 +19,20 @@ const tasksLocations: TaskLocation[] = demoTasks.map((task) => ({
   },
 }));
 
-// Define constants for bottom sheet heights
-const TAB_HEIGHT = 60; // Adjust this to match your actual tab height
-const BOTTOM_SHEET_INITIAL_HEIGHT = TAB_HEIGHT + 20; // Slightly bigger than tabs
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
-
 const TaskMapWithCarousel: React.FC = () => {
   const mapRef = useRef<MapRef>(null);
-  // Convert pixel heights to percentages of screen height
-  const snapPoints = useMemo(() => [
-    `${Math.round((BOTTOM_SHEET_INITIAL_HEIGHT / SCREEN_HEIGHT) * 100)}%`, 
-    '50%', 
-    '75%'
-  ], []);
-  
-  // Add a ref for the bottom sheet
-  const bottomSheetRef = useRef<BottomSheet>(null);
+
+  // Add custom styles to position the carousel
+  const carouselStyle = useMemo(
+    () => ({
+      position: 'absolute' as const,
+      bottom: 20,
+      left: 0,
+      right: 0,
+      zIndex: 1, // Lower than the bottom sheet which is typically at z-index 2
+    }),
+    []
+  );
 
   return (
     <View style={styles.container}>
@@ -45,22 +41,11 @@ const TaskMapWithCarousel: React.FC = () => {
           tasksLocations={tasksLocations}
           ref={mapRef}
           googleMapsApiKey="AIzaSyBLV8dy31iwxSABri1mUdh1WIMyhuO-kVQ"
+          style={styles.mapView}
         />
       </View>
 
-      <BottomSheet
-        ref={bottomSheetRef}
-        snapPoints={snapPoints}
-        index={0}
-        handleIndicatorStyle={styles.handleIndicator}
-      >
-        <View style={styles.bottomSheetContent}>
-          <Text style={styles.taskDetailsTitle}>Task Details</Text>
-          {/* Add your task details content here */}
-        </View>
-      </BottomSheet>
-
-      <View style={styles.carouselContainer}>
+      <View style={carouselStyle}>
         <CarouselComponent />
       </View>
     </View>
@@ -102,6 +87,9 @@ const styles = StyleSheet.create({
     height: 5,
     borderRadius: 5,
     marginBottom: 10,
+  },
+  mapView: {
+    flex: 1,
   },
 });
 
