@@ -28,9 +28,9 @@ const createColorScheme = (themeColors: any) => ({
     background: 'rgba(53, 119, 227, 0.1)', // Light blue background with opacity
   },
   status: {
-    allocated: '#5E5E5E', // Black for allocated status
-    actionNeeded: '#5E5E5E', // Gray for "Action Needed"
-    cancel: '#5E5E5E', // Gray for cancel
+    allocated: '#929292', // Black for allocated status
+    actionNeeded: '#929292', // Gray for "Action Needed"
+    cancel: '#929292', // Gray for cancel
   },
   dot: {
     new: '#3577E3', // Blue dot for new/unread tasks
@@ -131,12 +131,19 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
     ? `${formatDate(task.slaDate)} • ${formatTimeShort(task.slaDate)}`
     : '';
   const SLAinfo = `${SLA} ${SLAdate}`;
-  const SLAinfoTruncated = truncateText(SLAinfo, 28);
+  const SLAinfoTruncated =
+  task.isAppointed?
+   truncateText(SLAinfo, 28)
+  :
+   truncateText(SLAinfo, 36);
+
   //for Expected Dates
   const expectedDates = task.expectedDates
     ? `${formatDate(task.expectedDates.start)} ${formatTimeShort(task.expectedDates.start)} → ${formatDate(task.expectedDates.end)} ${formatTimeShort(task.expectedDates.end)}`
     : '';
-  const expectedDatesTruncated = truncateText(expectedDates, 28);
+  const expectedDatesTruncated = task.isAppointed
+    ? truncateText(expectedDates, 28)
+    : truncateText(expectedDates, 40);
 
   return (
     <View
@@ -148,21 +155,21 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
         ...styles,
       }}>
       {/* Column 1: Left column with dots */}
-      <View style={{ width: 12, marginTop: 2 }}>
+      <View className='flex-col items-center justify-center' style={{ width: 14, marginTop: 2 }}>
         {/* Row 1: Blue dot for new tasks */}
-        <View style={{ height: 20, justifyContent: 'center' }}>
+        <View style={{ height: 17, justifyContent: 'center' }}>
           {task.isNew && (
-            <View className="h-2 w-2 rounded-full" style={{ backgroundColor: colors.dot.new }} />
+            <View className="h-[9px] w-[9px] rounded-full" style={{ backgroundColor: colors.dot.new }} />
           )}
         </View>
 
         {/* Row 2: Empty space */}
-        <View style={{ height: 22 }} />
+        <View style={{ height: 26 }} />
 
         {/* Row 3: Red dot for SLA tasks */}
         <View style={{ height: 24, justifyContent: 'center' }}>
           {task.variant === 'sla' && (
-            <View className="h-2 w-2 rounded-full" style={{ backgroundColor: colors.dot.sla }} />
+            <View className="h-[9px] w-[9px] rounded-full" style={{ backgroundColor: colors.dot.sla }} />
           )}
         </View>
       </View>
@@ -251,7 +258,7 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
         {/* Row 4: Location details + status */}
         <View className="mt-1 flex-row items-center justify-between">
           <Text numberOfLines={1} style={{ color: colors.text.tertiary }} className="text-[16px]">
-            {truncateText(`${task.location.postalCode} • ${task.location.city}`, 30)}
+            {truncateText(`${task.location.postalCode} ${task.location.city}`, 30)}
           </Text>
 
           {task.isAppointed ? (
