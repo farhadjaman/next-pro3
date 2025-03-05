@@ -71,7 +71,7 @@ const formatTime = (dateString: string) => {
   if (!dateString) return '';
   try {
     const date = new Date(dateString);
-    return format(date, 'h:mm a').toUpperCase();
+    return format(date, 'hh:mm a').toUpperCase();
   } catch (error) {
     console.error('Error formatting time:', error);
     return '';
