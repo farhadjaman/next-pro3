@@ -1,6 +1,6 @@
 import { FlashList } from '@shopify/flash-list';
-import { useState } from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Animated, SafeAreaView, View } from 'react-native';
 import { CalendarProvider, ExpandableCalendar, LocaleConfig } from 'react-native-calendars';
 import XDate from 'xdate';
 
@@ -58,6 +58,11 @@ export default function Calender() {
 
   // Add state to track selected date
   const [selectedDate, setSelectedDate] = useState(today);
+  const [isCalendarExpanded, setIsCalendarExpanded] = useState(false);
+
+  // Animation value for text transition
+  const textFadeAnim = useRef(new Animated.Value(1)).current;
+  const [headerText, setHeaderText] = useState('');
 
   const markedDates = {
     '2025-03-08': {
@@ -117,6 +122,35 @@ export default function Calender() {
     }
   };
 
+  // Get week number
+  const getWeekNumber = (date: XDate) => {
+    const firstDayOfYear = new XDate(date.getFullYear(), 0, 1);
+    const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000;
+    return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+  };
+
+  // Update header text when calendar expansion state changes
+  useEffect(() => {
+    const date = selectedDate ? new XDate(selectedDate) : new XDate();
+
+    // Start the fade-out animation
+    Animated.timing(textFadeAnim, {
+      toValue: 0,
+      duration: 100,
+      useNativeDriver: true,
+    }).start(() => {
+      // Update the text content while invisible
+      setHeaderText(isCalendarExpanded ? formatMonth(date) : `WEEK ${getWeekNumber(date)}`);
+
+      // Start the fade-in animation
+      Animated.timing(textFadeAnim, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true,
+      }).start();
+    });
+  }, [isCalendarExpanded, selectedDate]);
+
   // Handle day press
   const handleDayPress = (day: any) => {
     console.log('Selected day', day);
@@ -157,13 +191,23 @@ export default function Calender() {
           hideExtraDays
           disableAllTouchEventsForDisabledDays
           onDayPress={handleDayPress}
+          onCalendarToggled={(expanded) => setIsCalendarExpanded(expanded)}
           renderHeader={(date) => {
-            const formattedMonth = formatMonth(date);
+            // Initialize header text if not set
+            if (!headerText) {
+              const currentDate = date || new XDate();
+              setHeaderText(
+                isCalendarExpanded ? formatMonth(currentDate) : `WEEK ${getWeekNumber(currentDate)}`
+              );
+            }
+
             return (
-              <View className="w-full items-start justify-start p-2.5  text-3xl">
-                <Text variant="title3" className="font-bold text-gray-800">
-                  {formattedMonth || ''}
-                </Text>
+              <View className="w-full items-start justify-start px-1.5 py-1 text-3xl">
+                <Animated.View style={{ opacity: textFadeAnim }}>
+                  <Text variant="title3" className="font-bold text-gray-800">
+                    {headerText}
+                  </Text>
+                </Animated.View>
               </View>
             );
           }}
