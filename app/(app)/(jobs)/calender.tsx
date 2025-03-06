@@ -90,10 +90,11 @@ export default function Calender() {
     'stylesheet.day.basic': {
       text: {
         fontSize: 20,
-        lineHeight: 30,
+        lineHeight: 31,
         fontWeight: '500',
         textAlignVertical: 'end',
         textAlign: 'center',
+
       },
     },
   };
