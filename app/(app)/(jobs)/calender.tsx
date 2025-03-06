@@ -62,7 +62,58 @@ export default function Calender() {
 
   // Animation value for text transition
   const textFadeAnim = useRef(new Animated.Value(1)).current;
-  const [headerText, setHeaderText] = useState('');
+  const isInitialRender = useRef(true);
+
+  // Format the date to show only the month name
+  const formatMonth = (date: XDate | undefined) => {
+    if (!date) return '';
+    try {
+      return date.toString('MMMM yyyy').toUpperCase();
+    } catch (error) {
+      console.log('Error formatting date:', error);
+      return '';
+    }
+  };
+
+  // Get week number
+  const getWeekNumber = (date: XDate) => {
+    const firstDayOfYear = new XDate(date.getFullYear(), 0, 1);
+    const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000;
+    return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+  };
+
+  // Initialize with the correct starting value after functions are defined
+  const initialDate = new XDate(today);
+  const initialText = `WEEK ${getWeekNumber(initialDate)}`;
+  const [headerText, setHeaderText] = useState(initialText);
+
+  // Update header text when calendar expansion state changes
+  useEffect(() => {
+    // Skip the animation on first render since we already set the initial value
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
+
+    const date = selectedDate ? new XDate(selectedDate) : new XDate();
+
+    // Start the fade-out animation
+    Animated.timing(textFadeAnim, {
+      toValue: 0,
+      duration: 100,
+      useNativeDriver: true,
+    }).start(() => {
+      // Update the text content while invisible
+      setHeaderText(isCalendarExpanded ? formatMonth(date) : `WEEK ${getWeekNumber(date)}`);
+
+      // Start the fade-in animation
+      Animated.timing(textFadeAnim, {
+        toValue: 1,
+        duration: 100,
+        useNativeDriver: true,
+      }).start();
+    });
+  }, [isCalendarExpanded, selectedDate]);
 
   const markedDates = {
     '2025-03-08': {
@@ -90,7 +141,7 @@ export default function Calender() {
     arrowColor: colors.primary,
     monthTextColor: colors.grey,
     textMonthFontSize: 16,
-    weekVerticalMargin: 6,
+    weekVerticalMargin: 7,
     textDayFontSize: 20,
     'stylesheet.day.basic': {
       text: {
@@ -110,46 +161,6 @@ export default function Calender() {
   function handleRejectTask() {
     console.log('Rejected task');
   }
-
-  // Format the date to show only the month name
-  const formatMonth = (date: XDate | undefined) => {
-    if (!date) return '';
-    try {
-      return date.toString('MMMM yyyy').toUpperCase();
-    } catch (error) {
-      console.log('Error formatting date:', error);
-      return '';
-    }
-  };
-
-  // Get week number
-  const getWeekNumber = (date: XDate) => {
-    const firstDayOfYear = new XDate(date.getFullYear(), 0, 1);
-    const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000;
-    return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
-  };
-
-  // Update header text when calendar expansion state changes
-  useEffect(() => {
-    const date = selectedDate ? new XDate(selectedDate) : new XDate();
-
-    // Start the fade-out animation
-    Animated.timing(textFadeAnim, {
-      toValue: 0,
-      duration: 100,
-      useNativeDriver: true,
-    }).start(() => {
-      // Update the text content while invisible
-      setHeaderText(isCalendarExpanded ? formatMonth(date) : `WEEK ${getWeekNumber(date)}`);
-
-      // Start the fade-in animation
-      Animated.timing(textFadeAnim, {
-        toValue: 1,
-        duration: 100,
-        useNativeDriver: true,
-      }).start();
-    });
-  }, [isCalendarExpanded, selectedDate]);
 
   // Handle day press
   const handleDayPress = (day: any) => {
@@ -193,14 +204,6 @@ export default function Calender() {
           onDayPress={handleDayPress}
           onCalendarToggled={(expanded) => setIsCalendarExpanded(expanded)}
           renderHeader={(date) => {
-            // Initialize header text if not set
-            if (!headerText) {
-              const currentDate = date || new XDate();
-              setHeaderText(
-                isCalendarExpanded ? formatMonth(currentDate) : `WEEK ${getWeekNumber(currentDate)}`
-              );
-            }
-
             return (
               <View className="w-full items-start justify-start px-1.5 py-1 text-3xl">
                 <Animated.View style={{ opacity: textFadeAnim }}>
