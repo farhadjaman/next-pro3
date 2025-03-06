@@ -90,11 +90,10 @@ export default function Calender() {
     'stylesheet.day.basic': {
       text: {
         fontSize: 20,
-        lineHeight: 31,
+        lineHeight: 30,
         fontWeight: '500',
         textAlignVertical: 'end',
         textAlign: 'center',
-
       },
     },
   };
@@ -133,9 +132,17 @@ export default function Calender() {
       onMonthChange={(month) => {
         console.log('Month changed:', month);
       }}>
-      <SafeAreaView className="flex-1 flex-col gap-y-0.5">
-        <View className="justify-center p-3">
-          <SearchInput textContentType="none" autoComplete="off" />
+      <SafeAreaView className="flex-1 flex-col gap-y-0.5 bg-white">
+        <View className="justify-center px-3 pt-3">
+          <SearchInput
+            containerClassName="bg-gray-100"
+            iconColor={colors.grey}
+            placeholderTextColor={colors.grey}
+            className="text-base"
+            onChangeText={() => {}}
+            textContentType="none"
+            autoComplete="off"
+          />
         </View>
         <ExpandableCalendar
           className="flex-1"

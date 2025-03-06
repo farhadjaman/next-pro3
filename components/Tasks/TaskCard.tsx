@@ -1,7 +1,6 @@
 import { FontAwesome6 } from '@expo/vector-icons';
 import { format } from 'date-fns';
 import { View } from 'react-native';
-import ReanimatedSwipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 
 import { Text } from '~/components/nativewindui/Text';
 import { useColorScheme } from '~/lib/useColorScheme';
