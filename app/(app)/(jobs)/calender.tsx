@@ -11,7 +11,7 @@ import { demoTasks } from '~/lib/demoData';
 import { useColorScheme } from '~/lib/useColorScheme';
 import { Task } from '~/types/task';
 
-function handleRejectTask() {}
+// Demo tasks
 const tasks: Task[] = demoTasks as Task[];
 
 LocaleConfig.locales = LocaleConfig.locales || {};
@@ -90,17 +90,20 @@ export default function Calender() {
     'stylesheet.day.basic': {
       text: {
         fontSize: 20,
-        lineHeight: 32,
+        lineHeight: 30,
         fontWeight: '500',
         textAlignVertical: 'end',
         textAlign: 'center',
-
       },
     },
   };
 
   function handleAcceptTask(taskId: string): void {
     throw new Error('Function not implemented.');
+  }
+
+  function handleRejectTask() {
+    console.log('Rejected task');
   }
 
   // Format the date to show only the month name

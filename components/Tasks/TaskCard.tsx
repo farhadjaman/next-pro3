@@ -115,14 +115,13 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
   //for first row
   const taskId = task.taskId;
   const title = task.title;
-  const titleTruncated = truncateText(`${taskId} ${title}`, 34);
+  const fullTitle = `${taskId} ${title}`;
 
   //for second row
   const type = getFormattedType(task.type);
   const model = task.equipment.model;
   const serialNumber = task.equipment.serialNumber;
   const modelInfo = `${type} • ${model} • ${serialNumber}`;
-  const modelInfoTruncated = truncateText(modelInfo, 47);
 
   //for third row
   //for SLA
@@ -131,15 +130,11 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
     ? `${formatDate(task.slaDate)} • ${formatTimeShort(task.slaDate)}`
     : '';
   const SLAinfo = `${SLA} ${SLAdate}`;
-  const SLAinfoTruncated = task.isAppointed ? truncateText(SLAinfo, 28) : truncateText(SLAinfo, 36);
-
+  task.isAppointed ? truncateText(SLAinfo, 28) : truncateText(SLAinfo, 36);
   //for Expected Dates
   const expectedDates = task.expectedDates
     ? `${formatDate(task.expectedDates.start)} ${formatTimeShort(task.expectedDates.start)} → ${formatDate(task.expectedDates.end)} ${formatTimeShort(task.expectedDates.end)}`
     : '';
-  const expectedDatesTruncated = task.isAppointed
-    ? truncateText(expectedDates, 28)
-    : truncateText(expectedDates, 40);
 
   return (
     <View
@@ -151,12 +146,12 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
         ...styles,
       }}>
       {/* Column 1: Left column with dots */}
-      <View className="flex-col items-center justify-center" style={{ width: 20, marginTop: 2 }}>
+      <View className="flex-col items-start justify-center" style={{ width: 20, marginTop: 2 }}>
         {/* Row 1: Blue dot for new tasks */}
         <View style={{ height: 17, justifyContent: 'center' }}>
           {task.isNew && (
             <View
-              className="h-[9px] w-[9px] rounded-full"
+              className="h-[10px] w-[10px] rounded-full"
               style={{ backgroundColor: colors.dot.new }}
             />
           )}
@@ -169,7 +164,7 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
         <View style={{ height: 24, justifyContent: 'center' }}>
           {task.variant === 'sla' && (
             <View
-              className="h-[9px] w-[9px] rounded-full"
+              className="h-[10px] w-[10px] rounded-full"
               style={{ backgroundColor: colors.dot.sla }}
             />
           )}
@@ -179,29 +174,31 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
       {/* Column 2: Main content */}
       <View className="flex-1 flex-col justify-center">
         {/* Row 1: Task ID + Title */}
-        <View className="flex-row items-center justify-between">
+        <View className="w-full flex-row items-center justify-between gap-1">
+          {/* Task ID + Title truncated to one line */}
           <Text
             numberOfLines={1}
-            className="lex-1 text-[16px] font-semibold"
+            ellipsizeMode="tail"
+            className="flex-1 text-[16px] font-semibold"
             style={{ color: colors.text.primary }}>
-            {titleTruncated}
+            {fullTitle}
           </Text>
-          <View className="flex-row items-center">
-            <Text className="text-[16px] font-medium" style={{ color: colors.text.primary }}>
-              {formatTime(task.dateTime.start)}
-            </Text>
-          </View>
+
+          <Text className="mr-2 text-[16px] font-medium" style={{ color: colors.text.primary }}>
+            {formatTime(task.dateTime.start)}
+          </Text>
         </View>
 
         {/* Row 2: Type, Equipment */}
         <View className="mt-1 flex-row items-center justify-between">
           <Text
             numberOfLines={1}
+            ellipsizeMode="tail"
             className="flex-1 text-[16px]"
             style={{ color: colors.text.primary }}>
-            {modelInfoTruncated}
+            {modelInfo}
           </Text>
-          <Text className="text-[16px] font-medium " style={{ color: colors.text.tertiary }}>
+          <Text className="mr-2 text-[16px] font-medium" style={{ color: colors.text.tertiary }}>
             {formatTime(task.dateTime.end)}
           </Text>
         </View>
@@ -210,16 +207,18 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
         {task.variant === 'sla' && (
           <View className="mt-1 flex-row items-center justify-between">
             <View className="flex-1 flex-row items-center">
-              <View
-                className="flex-row flex-wrap"
-                style={{ backgroundColor: colors.sla.background }}>
-                <Text numberOfLines={1} className="text-[16px]" style={{ color: colors.sla.text }}>
-                  {SLAinfoTruncated}
+              <View style={{ flexShrink: 1 }}>
+                <Text
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  className="text-[16px]"
+                  style={{ backgroundColor: colors.sla.background, color: colors.sla.text }}>
+                  {SLAinfo}
                 </Text>
               </View>
             </View>
             {task.isAppointed && (
-              <Text className="text-[16px]" style={{ color: colors.status.actionNeeded }}>
+              <Text className="mr-2 text-[16px]" style={{ color: colors.status.actionNeeded }}>
                 Action Needed
               </Text>
             )}
@@ -228,16 +227,17 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
 
         {task.variant === 'expected_dates' && (
           <View className="mt-1 flex-row items-center justify-between">
-            <View style={{ backgroundColor: colors.dates.background }}>
+            <View style={{ flexShrink: 1 }}>
               <Text
                 numberOfLines={1}
-                className="text-[16px] font-medium"
-                style={{ color: colors.dates.text }}>
-                {expectedDatesTruncated}
+                ellipsizeMode="tail"
+                className="w-full text-[16px]"
+                style={{ backgroundColor: colors.dates.background, color: colors.dates.text }}>
+                {expectedDates}
               </Text>
             </View>
             {task.isAppointed && (
-              <Text className="text-[16px]" style={{ color: colors.status.actionNeeded }}>
+              <Text className="mr-2 text-[16px]" style={{ color: colors.status.actionNeeded }}>
                 Action Needed
               </Text>
             )}
@@ -246,11 +246,17 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
 
         {task.variant === 'job_comment' && (
           <View className="mt-1 flex-row items-center justify-between">
-            <Text numberOfLines={1} className="text-[16px]" style={{ color: colors.text.tertiary }}>
-              {truncateText(task.jobComment || '', 20)}
-            </Text>
+            <View style={{ flexShrink: 1 }}>
+              <Text
+                ellipsizeMode={'tail'}
+                numberOfLines={1}
+                className="text-[16px]"
+                style={{ color: colors.text.tertiary }}>
+                {task.jobComment}
+              </Text>
+            </View>
             {task.isAppointed && (
-              <Text className="text-[16px]" style={{ color: colors.status.actionNeeded }}>
+              <Text className="mr-2 text-[16px]" style={{ color: colors.status.actionNeeded }}>
                 Action Needed
               </Text>
             )}
@@ -259,20 +265,21 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
 
         {/* Row 4: Location details + status */}
         <View className="mt-1 flex-row items-center justify-between">
-          <Text numberOfLines={1} style={{ color: colors.text.tertiary }} className="text-[16px]">
-            {truncateText(`${task.location.postalCode} ${task.location.city}`, 30)}
-          </Text>
-
+          <View style={{ flexShrink: 1 }}>
+            <Text numberOfLines={1} style={{ color: colors.text.tertiary }} className="text-[16px]">
+              {`${task.location.postalCode} ${task.location.city}`}
+            </Text>
+          </View>
           {task.isAppointed ? (
             <Text
               style={{ color: colors.status.cancel, width: 70 }}
-              className="text-right text-[16px] font-medium">
+              className="mr-2 text-right text-[16px]">
               CANCEL
             </Text>
           ) : (
             <Text
               style={{ color: colors.status.allocated, width: 100 }}
-              className="text-right text-[16px] font-medium">
+              className="mr-2 text-right text-[16px]">
               ALLOCATED
             </Text>
           )}

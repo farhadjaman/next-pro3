@@ -48,10 +48,10 @@ export default function SearchScreen() {
   };
 
   return (
-      <View style={styles.container}>
-        <Text>Search page</Text>
-      </View>
-  )
+    <View style={styles.container}>
+      <Text>Search page</Text>
+    </View>
+  );
 
   return (
     <Container>
