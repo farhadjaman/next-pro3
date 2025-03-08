@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="57c18eb0-cedf-4181-9bd5-3af97fe41418" name="Changes" comment="feat(database): integrate SQLite for data management and add address and contract schemas">
+      <change afterPath="$PROJECT_DIR$/assets/data.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/my-expo-app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/(jobs)/unassigned.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(jobs)/unassigned.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bun.lockb" beforeDir="false" afterPath="$PROJECT_DIR$/bun.lockb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/BackButton.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Button.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;farhadjaman&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/farhadjaman/next-pro3.git&quot;,
+    &quot;accountId&quot;: &quot;7215d83c-f25e-4069-9818-3f5bdb822ded&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2tJa37QDNRBQEQncn5gHMAmAliO" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/assets",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/node_modules/prettier",
+    "ts.external.directory.path": "/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/components" />
+      <recent name="$PROJECT_DIR$/components/jobs" />
+      <recent name="$PROJECT_DIR$/app/(app)/(jobs)" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/assets" />
+      <recent name="$PROJECT_DIR$/db" />
+      <recent name="$PROJECT_DIR$/components/Tasks" />
+      <recent name="$PROJECT_DIR$/components/app" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.25659.40" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="57c18eb0-cedf-4181-9bd5-3af97fe41418" name="Changes" comment="" />
+      <created>1740072429587</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1740072429587</updated>
+      <workItem from="1740072431278" duration="942000" />
+      <workItem from="1740142403841" duration="2063000" />
+      <workItem from="1740335356362" duration="5473000" />
+      <workItem from="1740406322505" duration="7054000" />
+      <workItem from="1740447364734" duration="14370000" />
+      <workItem from="1740466743185" duration="11698000" />
+      <workItem from="1740486782563" duration="17571000" />
+      <workItem from="1740542064523" duration="22971000" />
+      <workItem from="1740574779795" duration="7848000" />
+      <workItem from="1740643256688" duration="833000" />
+      <workItem from="1740678553144" duration="2164000" />
+      <workItem from="1740815823097" duration="350000" />
+      <workItem from="1740817309480" duration="2147000" />
+      <workItem from="1740837882374" duration="13265000" />
+      <workItem from="1740868686703" duration="17452000" />
+      <workItem from="1740929989381" duration="8203000" />
+      <workItem from="1741000509099" duration="341000" />
+      <workItem from="1741009875990" duration="7348000" />
+      <workItem from="1741072352819" duration="10908000" />
+      <workItem from="1741180524263" duration="4749000" />
+      <workItem from="1741235950759" duration="10668000" />
+      <workItem from="1741275682655" duration="8796000" />
+      <workItem from="1741320925733" duration="752000" />
+      <workItem from="1741321701556" duration="3990000" />
+      <workItem from="1741326136152" duration="2568000" />
+      <workItem from="1741337661805" duration="716000" />
+      <workItem from="1741339631831" duration="2658000" />
+      <workItem from="1741347894605" duration="66000" />
+      <workItem from="1741348365232" duration="1485000" />
+      <workItem from="1741413948848" duration="1091000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat(user): add user management functionality and update UI components">
+      <option name="closed" value="true" />
+      <created>1740449577855</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1740449577855</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat(role): implement role management functionality and update user data structure for super user">
+      <option name="closed" value="true" />
+      <created>1740457461185</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1740457461185</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat(jobs): added calender and task list in the job section">
+      <option name="closed" value="true" />
+      <created>1740545617389</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1740545617389</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat(jobs): added calender and task list in the job section">
+      <option name="closed" value="true" />
+      <created>1740545635239</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1740545635239</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat(expandable): enhance ExpandableComponent with spring animation and improve styling">
+      <option name="closed" value="true" />
+      <created>1740549737573</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1740549737573</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat(map): implement Google Map view with task locations and zoom controls">
+      <option name="closed" value="true" />
+      <created>1740849004499</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1740849004499</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactor(calendar): improve calendar styling and layout for better day representation">
+      <option name="closed" value="true" />
+      <created>1741080892672</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1741080892672</updated>
+    </task>
+    <task id="LOCAL-00008" summary="refactor(calendar): adjust line height for day text styling">
+      <option name="closed" value="true" />
+      <created>1741237156224</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1741237156224</updated>
+    </task>
+    <task id="LOCAL-00009" summary="refactor(calendar): adjust line height and improve search input styling">
+      <option name="closed" value="true" />
+      <created>1741239024759</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1741239024759</updated>
+    </task>
+    <task id="LOCAL-00010" summary="refactor(calendar): adjust line height and improve search input styling">
+      <option name="closed" value="true" />
+      <created>1741239215275</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1741239215275</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat(calendar): add calendar expansion with animated header text">
+      <option name="closed" value="true" />
+      <created>1741240838671</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1741240838671</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat(calendar): enhance header text animation and initialization logic">
+      <option name="closed" value="true" />
+      <created>1741241943935</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1741241943935</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat(database): integrate SQLite for data management and add address and contract schemas">
+      <option name="closed" value="true" />
+      <created>1741340275214</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1741340275214</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat(user): add user management functionality and update UI components" />
+    <MESSAGE value="feat(role): implement role management functionality and update user data structure for super user" />
+    <MESSAGE value="feat(jobs): added calender and task list in the job section" />
+    <MESSAGE value="feat(expandable): enhance ExpandableComponent with spring animation and improve styling" />
+    <MESSAGE value="feat(map): implement Google Map view with task locations and zoom controls" />
+    <MESSAGE value="refactor(calendar): improve calendar styling and layout for better day representation" />
+    <MESSAGE value="refactor(calendar): adjust line height for day text styling" />
+    <MESSAGE value="refactor(calendar): adjust line height and improve search input styling" />
+    <MESSAGE value="feat(calendar): add calendar expansion with animated header text" />
+    <MESSAGE value="feat(calendar): enhance header text animation and initialization logic" />
+    <MESSAGE value="feat(database): integrate SQLite for data management and add address and contract schemas" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(database): integrate SQLite for data management and add address and contract schemas" />
+  </component>
+</project>

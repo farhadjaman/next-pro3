@@ -5,5 +5,7 @@ const { withNativeWind } = require('nativewind/metro');
 /** @type {import('expo/metro-config').MetroConfig} */
 // eslint-disable-next-line no-undef
 const config = getDefaultConfig(__dirname);
+config.resolver.sourceExts.push('sql');
+config.resolver.assetExts.push('sqlite');
 
 module.exports = withNativeWind(config, { input: './global.css', inlineRem: 16 });
