@@ -48,7 +48,7 @@ export default function AppLayout() {
         headerTintColor: Platform.OS === 'ios' ? undefined : colors.foreground,
       }}>
       <Drawer.Screen
-        name="profile"
+        name="profile/index"
         options={{
           headerTitle: 'Profile',
           drawerLabel: 'Profile',
@@ -65,22 +65,6 @@ export default function AppLayout() {
           drawerLabel: 'Professional Jobs',
           drawerIcon: ({ size, color }) => (
             <MaterialIcons name="border-bottom" size={size} color={color} />
-          ),
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <HeaderButton />
-            </Link>
-          ),
-        }}
-      />
-
-      <Drawer.Screen
-        name="select-role"
-        options={{
-          headerTitle: 'Select Role',
-          drawerLabel: 'Select Role',
-          drawerIcon: ({ size, color }) => (
-            <MaterialCommunityIcons name="account-switch" size={size} color={color} />
           ),
         }}
       />

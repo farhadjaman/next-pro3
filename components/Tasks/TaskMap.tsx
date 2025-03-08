@@ -36,7 +36,7 @@ const TaskMapWithCarousel: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <View className="flex-1 overflow-hidden rounded-lg">
+      <View className="flex-1">
         <GoogleMapView
           tasksLocations={tasksLocations}
           ref={mapRef}

@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57c18eb0-cedf-4181-9bd5-3af97fe41418" name="Changes" comment="feat(database): implement SQLite database setup and error handling in layout">
+    <list default="true" id="57c18eb0-cedf-4181-9bd5-3af97fe41418" name="Changes" comment="feat(layout): update profile screen route and improve layout styling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/(jobs)/unassigned.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(jobs)/unassigned.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/EditScreenInfo.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ScreenContent.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/TabBarIcon.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Tasks/TaskCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Tasks/TaskCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Tasks/TaskMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Tasks/TaskMap.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,22 +47,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/node_modules/prettier",
-    "ts.external.directory.path": "/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/node_modules/prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -115,6 +124,7 @@
       <workItem from="1741347894605" duration="66000" />
       <workItem from="1741348365232" duration="1485000" />
       <workItem from="1741413948848" duration="3001000" />
+      <workItem from="1741424076847" duration="6156000" />
     </task>
     <task id="LOCAL-00001" summary="feat(user): add user management functionality and update UI components">
       <option name="closed" value="true" />
@@ -255,6 +265,7 @@
     <MESSAGE value="feat(calendar): enhance header text animation and initialization logic" />
     <MESSAGE value="feat(database): integrate SQLite for data management and add address and contract schemas" />
     <MESSAGE value="feat(database): implement SQLite database setup and error handling in layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(database): implement SQLite database setup and error handling in layout" />
+    <MESSAGE value="feat(layout): update profile screen route and improve layout styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(layout): update profile screen route and improve layout styling" />
   </component>
 </project>

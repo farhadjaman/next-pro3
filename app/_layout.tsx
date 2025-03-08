@@ -29,9 +29,6 @@ const loadDatabase = async () => {
     // Define where we want to store the database file
     const dbFolder = `${FileSystem.documentDirectory}SQLite`;
     const dbPath = `${dbFolder}/${DB_NAME}`;
-
-    console.log('Database destination path:', dbPath);
-
     // Create the SQLite directory if it doesn't exist
     const folderInfo = await FileSystem.getInfoAsync(dbFolder);
     if (!folderInfo.exists) {

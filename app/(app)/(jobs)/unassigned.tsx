@@ -105,37 +105,13 @@ export const Home = () => {
     }
   };
 
-  if (error) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.header}>Error</Text>
-        <Text style={styles.error}>{error}</Text>
-        <Text style={styles.subheader}>Available Tables:</Text>
-        {availableTables.length > 0 ? (
-          availableTables.map((table, index) => <Text key={index}>{table}</Text>)
-        ) : (
-          <Text>No tables found in database</Text>
-        )}
-        <Button title="Retry" onPress={loadData} />
-        <View style={styles.signOutButtonContainer}>
-          <Button title="Sign Out" onPress={handleSignOut} color="#ff6347" />
-        </View>
-      </SafeAreaView>
-    );
-  }
-
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.header}>Addresses</Text>
-        <Button title="Sign Out" onPress={handleSignOut} color="#ff6347" />
-      </View>
       {loading ? (
         <Text>Loading addresses...</Text>
       ) : (
         <>
           <Text style={styles.subheader}>Found {addresses.length} addresses</Text>
-
           {addresses.length > 0 ? (
             <FlatList
               data={addresses}

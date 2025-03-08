@@ -204,7 +204,7 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
 
         {/* Row 3: Variant-specific content + (Action Needed if appointed) */}
         {task.variant === 'sla' && (
-          <View className="mt-1 flex-row items-center justify-between">
+          <View className="mt-1 flex-row items-center justify-between gap-2">
             <View className="flex-1 flex-row items-center">
               <View style={{ flexShrink: 1 }}>
                 <Text
@@ -225,7 +225,7 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
         )}
 
         {task.variant === 'expected_dates' && (
-          <View className="mt-1 flex-row items-center justify-between">
+          <View className="mt-1 flex-row items-center justify-between gap-2">
             <View style={{ flexShrink: 1 }}>
               <Text
                 numberOfLines={1}
@@ -244,7 +244,7 @@ export function TaskCard({ task, styles, className, onAccept, onReject }: TaskCa
         )}
 
         {task.variant === 'job_comment' && (
-          <View className="mt-1 flex-row items-center justify-between">
+          <View className="mt-1 flex-row items-center justify-between gap-1">
             <View style={{ flexShrink: 1 }}>
               <Text
                 ellipsizeMode={'tail'}
