@@ -2,7 +2,7 @@ import { Tabs } from 'expo-router/tabs';
 import { useColorScheme } from '~/lib/useColorScheme';
 import { FontAwesome5, AntDesign } from '@expo/vector-icons';
 
-export default function TabsLayout() {
+export default function JobsLayout() {
   const { colors } = useColorScheme();
 
   return (

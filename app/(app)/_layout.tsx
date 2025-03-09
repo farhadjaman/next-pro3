@@ -61,8 +61,18 @@ export default function AppLayout() {
       <Drawer.Screen
         name="(jobs)"
         options={{
-          headerTitle: 'Professional Jobs',
+          headerTitle: '',
           drawerLabel: 'Professional Jobs',
+          drawerIcon: ({ size, color }) => (
+            <MaterialIcons name="border-bottom" size={size} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="(audit)"
+        options={{
+          headerTitle: '',
+          drawerLabel: 'Audits',
           drawerIcon: ({ size, color }) => (
             <MaterialIcons name="border-bottom" size={size} color={color} />
           ),
@@ -108,12 +118,11 @@ const DrawerContent = observer((props: DrawerContentComponentProps) => {
           label="Professional Jobs"
           onPress={() => router.push('/(app)/(jobs)')}
         />
-        <DrawerContentSectionItem icon={{ name: 'atom' }} isActive={false} label="Consumer Jobs" />
-        <DrawerContentSectionItem icon={{ name: 'alarm' }} isActive={false} label="Spare Parts" />
         <DrawerContentSectionItem
           icon={{ name: 'alarm' }}
-          isActive={false}
-          label="Assets Managment"
+          isActive={activeScreen === '(audit)'}
+          label="Audits"
+          onPress={() => router.push('/(app)/(audit)')}
         />
       </DrawerContentSection>
       {Platform.OS === 'android' && <View className="mx-3.5 my-1 h-px bg-border" />}

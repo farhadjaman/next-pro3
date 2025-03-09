@@ -58,8 +58,6 @@ const loadDatabase = async () => {
       throw new Error('Failed to get localUri for SQLite asset');
     }
 
-    // Copy the file
-    console.log(`Copying database file to SQLite directory`);
     await FileSystem.copyAsync({
       from: asset.localUri,
       to: dbPath,

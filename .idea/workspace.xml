@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57c18eb0-cedf-4181-9bd5-3af97fe41418" name="Changes" comment="feat(layout): update profile screen route and improve layout styling">
+    <list default="true" id="57c18eb0-cedf-4181-9bd5-3af97fe41418" name="Changes" comment="feat(database): refactor addresses and contracts schema, add addressesIndexes table">
+      <change afterPath="$PROJECT_DIR$/app/(app)/(audit)/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/(jobs)/unassigned.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(jobs)/unassigned.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/(jobs)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(jobs)/_layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(app)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/_layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/EditScreenInfo.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ScreenContent.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/TabBarIcon.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Tasks/TaskCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Tasks/TaskCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Tasks/TaskMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Tasks/TaskMap.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +121,9 @@
       <workItem from="1741347894605" duration="66000" />
       <workItem from="1741348365232" duration="1485000" />
       <workItem from="1741413948848" duration="3001000" />
-      <workItem from="1741424076847" duration="6156000" />
+      <workItem from="1741424076847" duration="7907000" />
+      <workItem from="1741457605090" duration="1253000" />
+      <workItem from="1741496580311" duration="3005000" />
     </task>
     <task id="LOCAL-00001" summary="feat(user): add user management functionality and update UI components">
       <option name="closed" value="true" />
@@ -246,7 +245,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741415278231</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat(layout): update profile screen route and improve layout styling">
+      <option name="closed" value="true" />
+      <created>1741449610311</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1741449610311</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feat(database): refactor addresses and contracts schema, add addressesIndexes table">
+      <option name="closed" value="true" />
+      <created>1741498524014</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1741498524014</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,6 +281,7 @@
     <MESSAGE value="feat(database): integrate SQLite for data management and add address and contract schemas" />
     <MESSAGE value="feat(database): implement SQLite database setup and error handling in layout" />
     <MESSAGE value="feat(layout): update profile screen route and improve layout styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(layout): update profile screen route and improve layout styling" />
+    <MESSAGE value="feat(database): refactor addresses and contracts schema, add addressesIndexes table" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(database): refactor addresses and contracts schema, add addressesIndexes table" />
   </component>
 </project>
