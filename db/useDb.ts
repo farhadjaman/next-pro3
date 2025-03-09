@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useSQLiteContext } from 'expo-sqlite';
+
 import { createDrizzleDb } from './index';
 
 export function useDb() {

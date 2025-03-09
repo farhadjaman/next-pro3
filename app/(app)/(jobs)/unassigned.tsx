@@ -1,110 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, View, Text, FlatList, StyleSheet, Button } from 'react-native';
+
+import { schema, Address } from '~/db';
 import { useDb } from '~/db/useDb';
-import { schema } from '~/db';
-import { useSQLiteContext } from 'expo-sqlite';
-import { useAuth } from '~/lib/context/authContext';
-import { router } from 'expo-router';
 
-// Type for address data
-type Address = typeof schema.addresses.$inferSelect;
-
-export const Home = () => {
+export const Unassigned = () => {
   const db = useDb();
-  const sqliteDb = useSQLiteContext(); // Only used for checking tables
-  const { signOut } = useAuth(); // Get signOut function from auth context
 
   const [addresses, setAddresses] = useState<Address[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [availableTables, setAvailableTables] = useState<string[]>([]);
 
   useEffect(() => {
     loadData();
   }, []);
 
   const loadData = async () => {
+    setLoading(true);
     try {
-      setLoading(true);
-      setError(null);
-
-      // First check what tables are available
-      const tables = await checkDatabaseTables();
-      console.log('Tables in database:', tables);
-
-      if (tables.includes('addresses')) {
-        // Load data using Drizzle
-        const data = await getDataWithDrizzle(10, 0);
-        console.log('Data fetched successfully:', data.length, 'addresses found');
-      } else {
-        throw new Error(`Required tables not found. Available tables: ${tables.join(', ')}`);
-      }
-
+      await getMachineParkData(10, 0);
       setLoading(false);
     } catch (err: any) {
       console.error('Error fetching data', err);
-      setError(err?.toString() || 'Unknown error');
       setLoading(false);
     }
   };
 
-  // Check what tables exist in the database
-  async function checkDatabaseTables(): Promise<string[]> {
+  async function getMachineParkData(limit: number, offset: number) {
     try {
-      // Get table names
-      const tables = await sqliteDb.getAllAsync(
-        "SELECT name FROM sqlite_master WHERE type='table';",
-        []
-      );
-
-      const tableNames = tables.map((table: any) => table.name as string);
-      console.log('Available tables:', tableNames);
-      setAvailableTables(tableNames);
-
-      return tableNames;
-    } catch (err) {
-      console.error('Error checking database tables:', err);
-      throw err;
-    }
-  }
-
-  // Load data with Drizzle ORM
-  // limits and offset are parameters of the function // lazy list/loading
-  async function getDataWithDrizzle(limit: number, offset: number) {
-    try {
-      // Using Drizzle ORM for type-safe queries
       const results = await db.select().from(schema.addresses).limit(limit);
-
-      console.log('Results count:', results.length);
       setAddresses(results);
       return results;
     } catch (err: any) {
       console.error('Drizzle Error:', err);
-      setError(`Error: ${err?.toString() || 'Unknown error'}`);
       throw err;
     }
   }
-
-  // Handle sign out
-  const handleSignOut = async () => {
-    try {
-      console.log('[HOME] Attempting to sign out');
-      const result = await signOut();
-      if (result.success) {
-        console.log('[HOME] Sign out successful, redirecting to auth page');
-        // The navigation will be handled automatically by the auth protection in _layout.tsx
-        // but we can force a redirect to the login page just to be sure
-        setTimeout(() => {
-          router.replace('/auth/(login)');
-        }, 100); // Small delay to ensure state updates first
-      } else {
-        console.error('[HOME] Sign out failed:', result.message);
-      }
-    } catch (err) {
-      console.error('[HOME] Error during sign out:', err);
-    }
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       {loading ? (
@@ -176,4 +106,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Unassigned;

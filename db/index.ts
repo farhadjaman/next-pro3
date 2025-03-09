@@ -1,5 +1,6 @@
 import { drizzle } from 'drizzle-orm/expo-sqlite';
 import { SQLiteDatabase } from 'expo-sqlite';
+
 import * as schema from '~/db/schema';
 
 export function createDrizzleDb(db: SQLiteDatabase) {
@@ -11,12 +12,10 @@ export { schema };
 
 // Export type definitions for the database and tables
 export type AddressesTable = typeof schema.addresses;
-export type ContractsTable = typeof schema.contracts;
+export type AssetsTable = typeof schema.assets;
+export type AddressesIndexesTable = typeof schema.addressesIndexes;
 
 // Export types for the table records
 export type Address = typeof schema.addresses.$inferSelect;
-export type Contract = typeof schema.contracts.$inferSelect;
-
-// Export types for insert operations
-export type InsertAddress = typeof schema.addresses.$inferInsert;
-export type InsertContract = typeof schema.contracts.$inferInsert;
+export type Asset = typeof schema.assets.$inferSelect;
+export type AddressIndex = typeof schema.addressesIndexes.$inferSelect;
