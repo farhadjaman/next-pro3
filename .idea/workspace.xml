@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57c18eb0-cedf-4181-9bd5-3af97fe41418" name="Changes" comment="feat(layout): improve customer list performance with pagination and refresh control">
+    <list default="true" id="57c18eb0-cedf-4181-9bd5-3af97fe41418" name="Changes" comment="feat(layout): improved virtual list with caching mechanism">
       <change beforePath="$PROJECT_DIR$/assets/data.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/assets/data.sqlite" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +119,7 @@
       <workItem from="1741457605090" duration="1253000" />
       <workItem from="1741496580311" duration="7240000" />
       <workItem from="1741513977194" duration="21718000" />
-      <workItem from="1741582111150" duration="25868000" />
+      <workItem from="1741582111150" duration="26244000" />
     </task>
     <task id="LOCAL-00001" summary="feat(user): add user management functionality and update UI components">
       <option name="closed" value="true" />
@@ -289,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741614725044</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="feat(layout): improved virtual list with caching mechanism">
+      <option name="closed" value="true" />
+      <created>1741615056758</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1741615056758</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,6 +322,7 @@
     <MESSAGE value="feat(database): update SQLite database file name and improve data loading logic" />
     <MESSAGE value="feat(layout): enhance customer list with refresh functionality and improve loading logic" />
     <MESSAGE value="feat(layout): improve customer list performance with pagination and refresh control" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(layout): improve customer list performance with pagination and refresh control" />
+    <MESSAGE value="feat(layout): improved virtual list with caching mechanism" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(layout): improved virtual list with caching mechanism" />
   </component>
 </project>

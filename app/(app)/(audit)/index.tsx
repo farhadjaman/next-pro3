@@ -14,7 +14,7 @@ import {
 import { Address, schema } from '~/db';
 import { useDb } from '~/db/useDb';
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 50;
 const PAGE_BUFFER = 1;
 
 type ListItem = { index: number; page: number };
