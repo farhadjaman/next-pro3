@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
   StyleSheet,
   VirtualizedList,
+  RefreshControl,
 } from 'react-native';
 
 import { Address, schema } from '~/db';
@@ -14,19 +15,33 @@ import { useDb } from '~/db/useDb';
 
 const PAGE_SIZE = 20;
 
+type ListItem = { index: number; page: number };
+
 const Customers = () => {
   const db = useDb();
   const [pages, setPages] = useState<{ [key: number]: Address[] }>({});
   const [totalItems, setTotalItems] = useState(0);
-  const loadingRef = useRef(false);
-  const listRef = useRef<any>(null);
+  const [refreshing, setRefreshing] = useState(false);
+  const loadingPagesRef = useRef(new Set<number>());
+  const mountedRef = useRef(true);
+  const listRef = useRef<VirtualizedList<ListItem>>(null);
+
+  const fetchCount = useCallback(async () => {
+    try {
+      const dbCount = await db.select({ count: count() }).from(schema.addresses);
+      if (mountedRef.current) {
+        setTotalItems(dbCount[0]?.count || 0);
+      }
+    } catch (error) {
+      console.error('Error fetching total count:', error);
+    }
+  }, [db]);
 
   const loadPage = useCallback(
     async (page: number) => {
-      console.log(`Loading page ${page}...`);
-      if (loadingRef.current || pages[page]) return;
+      if (loadingPagesRef.current.has(page) || pages[page]) return;
 
-      loadingRef.current = true;
+      loadingPagesRef.current.add(page);
       try {
         const results = await db
           .select()
@@ -35,45 +50,47 @@ const Customers = () => {
           .offset(page * PAGE_SIZE)
           .orderBy(schema.addresses.section_index, schema.addresses.address_name);
 
-        setPages((prev) => ({ ...prev, [page]: results }));
+        if (mountedRef.current) {
+          setPages((prev) => ({ ...prev, [page]: results }));
+        }
       } catch (err) {
         console.error(`Error loading page ${page}:`, err);
       } finally {
-        loadingRef.current = false;
+        loadingPagesRef.current.delete(page);
       }
     },
     [db, pages]
   );
 
   useEffect(() => {
-    const fetchCount = async () => {
-      try {
-        const dbCount = await db.select({ count: count() }).from(schema.addresses);
-
-        console.log('Total count:', dbCount[0]?.count);
-
-        setTotalItems(dbCount[0]?.count || 0);
-      } catch (error) {
-        console.error('Error fetching total count:', error);
-      }
-    };
+    mountedRef.current = true;
     fetchCount();
-  }, []);
+    return () => {
+      mountedRef.current = false;
+    };
+  }, [fetchCount]);
 
-  const getItem = useCallback((_: unknown, index: number) => {
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    setPages({});
+    await fetchCount();
+    setRefreshing(false);
+  }, [fetchCount]);
+
+  const getItem = useCallback((_: unknown, index: number): ListItem => {
     return { index, page: Math.floor(index / PAGE_SIZE) };
   }, []);
+
   const renderItem = useCallback(
-    ({ item }: { item: { index: number; page: number } }) => {
+    ({ item }: { item: ListItem }) => {
       const pageData = pages[item.page];
       const itemIndex = item.index % PAGE_SIZE;
       const address = pageData?.[itemIndex];
 
-      if (!pageData) {
-        if (!loadingRef.current) {
+      if (!address) {
+        if (!loadingPagesRef.current.has(item.page)) {
           loadPage(item.page);
         }
-
         return (
           <View style={styles.addressItem}>
             <ActivityIndicator size="small" />
@@ -82,14 +99,16 @@ const Customers = () => {
         );
       }
 
+      const cityPostcode = [address.city, address.post_code].filter(Boolean).join(', ');
+
       return (
         <View style={styles.addressItem}>
           <Text style={styles.addressName}>{address.address_name || 'Unnamed Address'}</Text>
           <Text>{address.address_line_1}</Text>
           {address.address_line_2 && <Text>{address.address_line_2}</Text>}
-          <Text>{`${address.city || ''}, ${address.post_code || ''}`}</Text>
+          {!!cityPostcode && <Text>{cityPostcode}</Text>}
           <Text>
-            {address.country || ''}- {item.index} - {item.page}
+            {address.country || ''} • Index: {item.index} • Page: {item.page}
           </Text>
         </View>
       );
@@ -111,6 +130,7 @@ const Customers = () => {
         updateCellsBatchingPeriod={50}
         style={styles.list}
         contentContainerStyle={styles.contentContainer}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         removeClippedSubviews={false}
         maintainVisibleContentPosition={{
           minIndexForVisible: 0,

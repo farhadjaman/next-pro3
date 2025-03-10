@@ -18,10 +18,9 @@ import { AuthProvider, useAuth } from '~/lib/context/authContext';
 import { useColorScheme, useInitialAndroidBarSync } from '~/lib/useColorScheme';
 import { NAV_THEME } from '~/theme';
 import { ActivityIndicator } from '~/components/nativewindui/ActivityIndicator';
-import {DB_NAME} from '~/lib/constants';
+import { DB_NAME } from '~/lib/constants';
 
 export { ErrorBoundary } from 'expo-router';
-
 
 // Load the database from assets to the device's filesystem
 const loadDatabase = async () => {
