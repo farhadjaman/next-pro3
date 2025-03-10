@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57c18eb0-cedf-4181-9bd5-3af97fe41418" name="Changes" comment="feat(layout): improved virtual list with caching mechanism">
+    <list default="true" id="57c18eb0-cedf-4181-9bd5-3af97fe41418" name="Changes" comment="feat(eas): add channel configuration for preview and production distributions">
+      <change afterPath="$PROJECT_DIR$/app/(app)/(audit)/test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/PaginatedVirtualizedList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/machinePark.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/(audit)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(audit)/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/data.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/assets/data.sqlite" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,6 +20,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -38,22 +45,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/assets",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/node_modules/prettier",
-    "ts.external.directory.path": "/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/assets&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/node_modules/prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/farhadjaman/Desktop/Developer/MobileApp/Service/nextpro3/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets" />
@@ -119,7 +126,7 @@
       <workItem from="1741457605090" duration="1253000" />
       <workItem from="1741496580311" duration="7240000" />
       <workItem from="1741513977194" duration="21718000" />
-      <workItem from="1741582111150" duration="26244000" />
+      <workItem from="1741582111150" duration="35938000" />
     </task>
     <task id="LOCAL-00001" summary="feat(user): add user management functionality and update UI components">
       <option name="closed" value="true" />
@@ -297,11 +304,43 @@
       <option name="project" value="LOCAL" />
       <updated>1741615056758</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="feat(eas): add channel configuration for preview and production distributions">
+      <option name="closed" value="true" />
+      <created>1741615325233</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1741615325233</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat(eas): add channel configuration for preview and production distributions">
+      <option name="closed" value="true" />
+      <created>1741615424631</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1741615424631</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="0659f12b-ae3c-462d-b476-946366604241" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="0659f12b-ae3c-462d-b476-946366604241">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat(user): add user management functionality and update UI components" />
@@ -323,6 +362,7 @@
     <MESSAGE value="feat(layout): enhance customer list with refresh functionality and improve loading logic" />
     <MESSAGE value="feat(layout): improve customer list performance with pagination and refresh control" />
     <MESSAGE value="feat(layout): improved virtual list with caching mechanism" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(layout): improved virtual list with caching mechanism" />
+    <MESSAGE value="feat(eas): add channel configuration for preview and production distributions" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(eas): add channel configuration for preview and production distributions" />
   </component>
 </project>
