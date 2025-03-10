@@ -14,6 +14,7 @@ type PaginatedVirtualizedListProps = {
   totalItems: number;
   pageSize?: number;
   pageBuffer?: number;
+  fetchData: (page: number, pageSize: number) => Promise<any[]>;
 };
 
 export const PaginatedVirtualizedList = ({
@@ -22,6 +23,7 @@ export const PaginatedVirtualizedList = ({
   totalItems,
   pageSize = PAGE_SIZE,
   pageBuffer = PAGE_BUFFER,
+  fetchData,
 }: PaginatedVirtualizedListProps) => {
   const db = useDb();
   const [pages, setPages] = useState<Record<number, any[]>>({});
@@ -37,13 +39,8 @@ export const PaginatedVirtualizedList = ({
       loadingPagesRef.current.add(page);
 
       try {
-        const results = await db
-          .select()
-          .from(schema.addresses)
-          .limit(pageSize)
-          .offset(page * pageSize)
-          .orderBy(schema.addresses.section_index, schema.addresses.address_name);
-
+        let results: any = [];
+        results = await fetchData(page, pageSize);
         if (mountedRef.current) {
           setPages((prev) => ({ ...prev, [page]: results }));
         }
@@ -53,7 +50,7 @@ export const PaginatedVirtualizedList = ({
         loadingPagesRef.current.delete(page);
       }
     },
-    [db, pages]
+    [db, pages, pageSize, fetchData]
   );
 
   const onRefresh = useCallback(async () => {
@@ -84,7 +81,7 @@ export const PaginatedVirtualizedList = ({
         );
       }
 
-      return <RenderCard item={itemData}/>;
+      return <RenderCard item={itemData} />;
     },
     [pages, loadPage]
   );
@@ -122,10 +119,10 @@ export const PaginatedVirtualizedList = ({
 
   const getItemCount = useCallback(() => totalItems, [totalItems]);
 
-  useEffect(() => {
-    const pageNumbers = Object.keys(pages).map((key) => Number(key));
-    console.log('Pages in memory:', pageNumbers);
-  }, [pages]);
+  // useEffect(() => {
+  //   const pageNumbers = Object.keys(pages).map((key) => Number(key));
+  //   console.log('Pages in memory:', pageNumbers);
+  // }, [pages]);
 
   return (
     <VirtualizedList

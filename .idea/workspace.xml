@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57c18eb0-cedf-4181-9bd5-3af97fe41418" name="Changes" comment="feat(eas): add channel configuration for preview and production distributions">
-      <change afterPath="$PROJECT_DIR$/app/(app)/(audit)/test.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/PaginatedVirtualizedList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/types/machinePark.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/(audit)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(audit)/index.tsx" afterDir="false" />
+    <list default="true" id="57c18eb0-cedf-4181-9bd5-3af97fe41418" name="Changes" comment="feat(layout): refactor PaginatedVirtualizedList to accept fetchData prop for improved data fetching">
       <change beforePath="$PROJECT_DIR$/assets/data.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/assets/data.sqlite" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +120,7 @@
       <workItem from="1741457605090" duration="1253000" />
       <workItem from="1741496580311" duration="7240000" />
       <workItem from="1741513977194" duration="21718000" />
-      <workItem from="1741582111150" duration="35938000" />
+      <workItem from="1741582111150" duration="37691000" />
     </task>
     <task id="LOCAL-00001" summary="feat(user): add user management functionality and update UI components">
       <option name="closed" value="true" />
@@ -320,7 +314,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741615424631</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="feat(layout): refactor PaginatedVirtualizedList to accept fetchData prop for improved data fetching">
+      <option name="closed" value="true" />
+      <created>1741629766909</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1741629766909</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,6 +365,7 @@
     <MESSAGE value="feat(layout): improve customer list performance with pagination and refresh control" />
     <MESSAGE value="feat(layout): improved virtual list with caching mechanism" />
     <MESSAGE value="feat(eas): add channel configuration for preview and production distributions" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(eas): add channel configuration for preview and production distributions" />
+    <MESSAGE value="feat(layout): refactor PaginatedVirtualizedList to accept fetchData prop for improved data fetching" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(layout): refactor PaginatedVirtualizedList to accept fetchData prop for improved data fetching" />
   </component>
 </project>

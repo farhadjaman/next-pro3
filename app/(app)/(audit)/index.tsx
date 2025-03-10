@@ -5,8 +5,6 @@ import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { PaginatedVirtualizedList } from '~/components/PaginatedVirtualizedList';
 import { schema } from '~/db';
 import { useDb } from '~/db/useDb';
-import { ListItem } from '~/types/machinePark';
-
 
 export default function Customers() {
   const db = useDb();
@@ -23,13 +21,13 @@ export default function Customers() {
       .catch((err) => console.error('Error fetching count:', err));
   }, [fetchCount]);
 
-  const fetchPage = useCallback(
-    async (pageIndex: number, pageSize: number) => {
+  const fetchAddressData = useCallback(
+    async (page: number, pageSize: number) => {
       return db
         .select()
         .from(schema.addresses)
         .limit(pageSize)
-        .offset(pageIndex * pageSize)
+        .offset(page * pageSize)
         .orderBy(schema.addresses.section_index, schema.addresses.address_name);
     },
     [db]
@@ -44,24 +42,26 @@ export default function Customers() {
         <Text>{item.address_line_1}</Text>
         {item.address_line_2 && <Text>{item.address_line_2}</Text>}
         {!!cityPostcode && <Text>{cityPostcode}</Text>}
-        <Text>
-          {item.country || ''}
-        </Text>
+        <Text>{item.country || ''}</Text>
       </View>
     );
-  }
+  };
 
   const keyExtractor = (item: any, index: number) => {
     return item?.id ? `${item.id}` : `row-${index}`;
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <PaginatedVirtualizedList keyExtractor={keyExtractor} RenderCard={renderAddressItem} totalItems={totalItems} />
+      <PaginatedVirtualizedList
+        keyExtractor={keyExtractor}
+        RenderCard={renderAddressItem}
+        totalItems={totalItems}
+        fetchData={fetchAddressData}
+      />
     </SafeAreaView>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -89,4 +89,3 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 });
-
