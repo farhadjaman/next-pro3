@@ -49,6 +49,7 @@
     "expo-sqlite": "^15.1.2",
     "expo-status-bar": "~2.0.1",
     "expo-system-ui": "~4.0.8",
+    "expo-updates": "~0.27.1",
     "expo-web-browser": "~14.0.2",
     "lucide-react-native": "^0.477.0",
     "mobx": "^6.13.6",

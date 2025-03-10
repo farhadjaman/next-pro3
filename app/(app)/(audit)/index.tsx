@@ -8,12 +8,14 @@ import {
   StyleSheet,
   VirtualizedList,
   RefreshControl,
+  ViewToken,
 } from 'react-native';
 
 import { Address, schema } from '~/db';
 import { useDb } from '~/db/useDb';
 
 const PAGE_SIZE = 20;
+const PAGE_BUFFER = 1;
 
 type ListItem = { index: number; page: number };
 
@@ -24,7 +26,7 @@ const Customers = () => {
   const [refreshing, setRefreshing] = useState(false);
   const loadingPagesRef = useRef(new Set<number>());
   const mountedRef = useRef(true);
-  const listRef = useRef<VirtualizedList<ListItem>>(null);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const fetchCount = useCallback(async () => {
     try {
@@ -37,11 +39,14 @@ const Customers = () => {
     }
   }, [db]);
 
+  // 2) Load a page if not already in memory or currently loading
   const loadPage = useCallback(
     async (page: number) => {
       if (loadingPagesRef.current.has(page) || pages[page]) return;
 
       loadingPagesRef.current.add(page);
+      console.log('Loading page:', page);
+
       try {
         const results = await db
           .select()
@@ -62,6 +67,7 @@ const Customers = () => {
     [db, pages]
   );
 
+  // On mount, fetch total count
   useEffect(() => {
     mountedRef.current = true;
     fetchCount();
@@ -70,6 +76,7 @@ const Customers = () => {
     };
   }, [fetchCount]);
 
+  // Pull-to-refresh just resets pages and fetches count again
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
     setPages({});
@@ -77,10 +84,12 @@ const Customers = () => {
     setRefreshing(false);
   }, [fetchCount]);
 
+  // 3) `getItem` for VirtualizedList
   const getItem = useCallback((_: unknown, index: number): ListItem => {
     return { index, page: Math.floor(index / PAGE_SIZE) };
   }, []);
 
+  // 4) Render each row
   const renderItem = useCallback(
     ({ item }: { item: ListItem }) => {
       const pageData = pages[item.page];
@@ -99,8 +108,8 @@ const Customers = () => {
         );
       }
 
+      // Render the loaded item
       const cityPostcode = [address.city, address.post_code].filter(Boolean).join(', ');
-
       return (
         <View style={styles.addressItem}>
           <Text style={styles.addressName}>{address.address_name || 'Unnamed Address'}</Text>
@@ -116,10 +125,46 @@ const Customers = () => {
     [pages, loadPage]
   );
 
+  // 5) Figure out the “current page” by seeing what’s visible
+  const onViewableItemsChanged = useCallback(
+    ({ viewableItems }: { viewableItems: ViewToken[] }) => {
+      if (!viewableItems || viewableItems.length === 0) return;
+      const first = viewableItems[0];
+      if (first.index != null) {
+        const newPage = Math.floor(first.index / PAGE_SIZE);
+        if (newPage !== currentPage) {
+          setCurrentPage(newPage);
+        }
+      }
+    },
+    [currentPage]
+  );
+
+  // 6) Evict pages that are too far from `currentPage`
+  useEffect(() => {
+    setPages((prev) => {
+      const newPages = { ...prev };
+      const lower = currentPage - PAGE_BUFFER;
+      const upper = currentPage + PAGE_BUFFER;
+      for (const key of Object.keys(newPages)) {
+        const pageNum = parseInt(key, 10);
+        if (pageNum < lower || pageNum > upper) {
+          delete newPages[pageNum];
+        }
+      }
+      return newPages;
+    });
+  }, [currentPage]);
+
+  useEffect(() => {
+    const pageNumbers = Object.keys(pages).map((key) => Number(key));
+    console.log('Pages in memory:', pageNumbers);
+  }, [pages]);
+
   return (
     <SafeAreaView style={styles.container}>
+      <Text >Total items {totalItems}</Text>
       <VirtualizedList
-        ref={listRef}
         getItem={getItem}
         getItemCount={() => totalItems}
         keyExtractor={(item) => String(item.index)}
@@ -128,12 +173,13 @@ const Customers = () => {
         windowSize={5}
         maxToRenderPerBatch={PAGE_SIZE}
         updateCellsBatchingPeriod={50}
-        style={styles.list}
-        contentContainerStyle={styles.contentContainer}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         removeClippedSubviews={false}
-        maintainVisibleContentPosition={{
-          minIndexForVisible: 0,
+        style={styles.list}
+        contentContainerStyle={styles.contentContainer}
+        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfig={{
+          itemVisiblePercentThreshold: 50,
         }}
       />
     </SafeAreaView>
@@ -157,8 +203,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
     borderRadius: 8,
   },
-  addressName: { fontSize: 18, fontWeight: 'bold', marginBottom: 8 },
-  loadingText: { marginTop: 8 },
+  addressName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  loadingText: {
+    marginTop: 8,
+  },
 });
 
 export default Customers;

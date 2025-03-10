@@ -9,7 +9,10 @@
       "output": "static",
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-router", "expo-secure-store"],
+    "plugins": [
+      "expo-router",
+      "expo-secure-store"
+    ],
     "experiments": {
       "typedRoutes": true,
       "tsconfigPaths": true
@@ -22,7 +25,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.fassk.nextpro3",
@@ -44,6 +49,12 @@
       "eas": {
         "projectId": "5aede32c-4c16-445f-978f-68e23c4d200f"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/5aede32c-4c16-445f-978f-68e23c4d200f"
     }
   }
 }
