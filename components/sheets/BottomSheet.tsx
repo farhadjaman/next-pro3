@@ -21,7 +21,6 @@ export function BottomSheet({
   const bottomSheetRef = useSheetRef();
 
   useEffect(() => {
-    console.log('isOpen', isOpen, index);
     if (isOpen || index > -1) {
       bottomSheetRef.current?.present();
     } else {

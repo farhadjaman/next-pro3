@@ -17,11 +17,11 @@ import ListLoading from '~/components/loaders/ListLoading';
 import { AuthProvider, useAuth } from '~/lib/context/authContext';
 import { useColorScheme, useInitialAndroidBarSync } from '~/lib/useColorScheme';
 import { NAV_THEME } from '~/theme';
+import { ActivityIndicator } from '~/components/nativewindui/ActivityIndicator';
+import {DB_NAME} from '~/lib/constants';
 
 export { ErrorBoundary } from 'expo-router';
 
-// Database file name
-const DB_NAME = 'data.sqlite';
 
 // Load the database from assets to the device's filesystem
 const loadDatabase = async () => {
@@ -33,7 +33,6 @@ const loadDatabase = async () => {
     const folderInfo = await FileSystem.getInfoAsync(dbFolder);
     if (!folderInfo.exists) {
       await FileSystem.makeDirectoryAsync(dbFolder, { intermediates: true });
-      console.log('Created SQLite directory');
     }
 
     // Check if database already exists
@@ -42,17 +41,14 @@ const loadDatabase = async () => {
       // For development, you might want to delete the existing db to get a fresh copy
       // Comment out this section if you want to preserve your database between app runs
       await FileSystem.deleteAsync(dbPath);
-      console.log('Deleted existing database for fresh copy');
     }
 
     // Load the SQLite file from assets
-    console.log('Loading assets...');
-    const sqliteAssets = require('../assets/data.sqlite');
+    const sqliteAssets = require(`../assets/data.sqlite`);
     const asset = Asset.fromModule(sqliteAssets);
 
     // Download the asset
     await asset.downloadAsync();
-    console.log('Asset downloaded');
 
     if (!asset.localUri) {
       throw new Error('Failed to get localUri for SQLite asset');
@@ -69,7 +65,6 @@ const loadDatabase = async () => {
       throw new Error('Failed to copy database file');
     }
 
-    console.log(`Database file size: ${newFileInfo.size} bytes`);
     return { dbPath, folderPath: dbFolder };
   } catch (error) {
     console.error('Error setting up database:', error);
@@ -132,11 +127,9 @@ export default function RootLayout() {
     const initDatabase = async () => {
       try {
         const { folderPath } = await loadDatabase();
-        console.log('Database initialization successful');
         setSqliteDirectory(folderPath);
         setDbReady(true);
       } catch (error) {
-        console.error('Database initialization failed:', error);
         if (error instanceof Error) {
           setDbError(error);
         } else {
@@ -178,7 +171,7 @@ export default function RootLayout() {
   if (!dbReady) {
     return (
       <View style={styles.container}>
-        <Text>Loading database...</Text>
+        <ActivityIndicator />
       </View>
     );
   }
@@ -189,7 +182,6 @@ export default function RootLayout() {
         key={`root-status-bar-${isDarkColorScheme ? 'light' : 'dark'}`}
         style={isDarkColorScheme ? 'light' : 'dark'}
       />
-      {/* Main GestureHandlerRootView for the entire app - all gesture-based components must be children of this */}
       <GestureHandlerRootView style={{ flex: 1 }}>
         <BottomSheetModalProvider>
           <KeyboardProvider statusBarTranslucent navigationBarTranslucent>

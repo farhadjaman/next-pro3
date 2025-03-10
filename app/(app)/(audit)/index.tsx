@@ -1,66 +1,121 @@
-import React, { useState, useEffect } from 'react';
-import { SafeAreaView, View, Text, FlatList, StyleSheet, Button } from 'react-native';
+import { count } from 'drizzle-orm';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  ActivityIndicator,
+  StyleSheet,
+  VirtualizedList,
+} from 'react-native';
 
-import { schema, Address } from '~/db';
+import { Address, schema } from '~/db';
 import { useDb } from '~/db/useDb';
 
-export const Customers = () => {
-  const db = useDb();
+const PAGE_SIZE = 20;
 
-  const [addresses, setAddresses] = useState<Address[]>([]);
-  const [loading, setLoading] = useState(true);
+const Customers = () => {
+  const db = useDb();
+  const [pages, setPages] = useState<{ [key: number]: Address[] }>({});
+  const [totalItems, setTotalItems] = useState(0);
+  const loadingRef = useRef(false);
+  const listRef = useRef<any>(null);
+
+  const loadPage = useCallback(
+    async (page: number) => {
+      console.log(`Loading page ${page}...`);
+      if (loadingRef.current || pages[page]) return;
+
+      loadingRef.current = true;
+      try {
+        const results = await db
+          .select()
+          .from(schema.addresses)
+          .limit(PAGE_SIZE)
+          .offset(page * PAGE_SIZE)
+          .orderBy(schema.addresses.section_index, schema.addresses.address_name);
+
+        setPages((prev) => ({ ...prev, [page]: results }));
+      } catch (err) {
+        console.error(`Error loading page ${page}:`, err);
+      } finally {
+        loadingRef.current = false;
+      }
+    },
+    [db, pages]
+  );
 
   useEffect(() => {
-    loadData();
+    const fetchCount = async () => {
+      try {
+        const dbCount = await db.select({ count: count() }).from(schema.addresses);
+
+        console.log('Total count:', dbCount[0]?.count);
+
+        setTotalItems(dbCount[0]?.count || 0);
+      } catch (error) {
+        console.error('Error fetching total count:', error);
+      }
+    };
+    fetchCount();
   }, []);
 
-  const loadData = async () => {
-    setLoading(true);
-    try {
-      await getMachineParkData(10, 0);
-      setLoading(false);
-    } catch (err: any) {
-      console.error('Error fetching data', err);
-      setLoading(false);
-    }
-  };
+  const getItem = useCallback((_: unknown, index: number) => {
+    return { index, page: Math.floor(index / PAGE_SIZE) };
+  }, []);
+  const renderItem = useCallback(
+    ({ item }: { item: { index: number; page: number } }) => {
+      const pageData = pages[item.page];
+      const itemIndex = item.index % PAGE_SIZE;
+      const address = pageData?.[itemIndex];
 
-  async function getMachineParkData(limit: number, offset: number) {
-    try {
-      const results = await db.select().from(schema.addresses).limit(limit);
-      setAddresses(results);
-      return results;
-    } catch (err: any) {
-      console.error('Drizzle Error:', err);
-      throw err;
-    }
-  }
+      if (!pageData) {
+        if (!loadingRef.current) {
+          loadPage(item.page);
+        }
+
+        return (
+          <View style={styles.addressItem}>
+            <ActivityIndicator size="small" />
+            <Text style={styles.loadingText}>Loading...</Text>
+          </View>
+        );
+      }
+
+      return (
+        <View style={styles.addressItem}>
+          <Text style={styles.addressName}>{address.address_name || 'Unnamed Address'}</Text>
+          <Text>{address.address_line_1}</Text>
+          {address.address_line_2 && <Text>{address.address_line_2}</Text>}
+          <Text>{`${address.city || ''}, ${address.post_code || ''}`}</Text>
+          <Text>
+            {address.country || ''}- {item.index} - {item.page}
+          </Text>
+        </View>
+      );
+    },
+    [pages, loadPage]
+  );
+
   return (
     <SafeAreaView style={styles.container}>
-      {loading ? (
-        <Text>Loading addresses...</Text>
-      ) : (
-        <>
-          <Text style={styles.subheader}>Found {addresses.length} addresses</Text>
-          {addresses.length > 0 ? (
-            <FlatList
-              data={addresses}
-              keyExtractor={(item) => item.id?.toString() || Math.random().toString()}
-              renderItem={({ item }) => (
-                <View style={styles.addressItem}>
-                  <Text style={styles.addressName}>{item.address_name || 'Unnamed Address'}</Text>
-                  <Text>{item.address_line_1}</Text>
-                  {item.address_line_2 ? <Text>{item.address_line_2}</Text> : null}
-                  <Text>{`${item.city || ''}, ${item.post_code || ''}`}</Text>
-                  <Text>{`${item.country || ''}`}</Text>
-                </View>
-              )}
-            />
-          ) : (
-            <Text>No addresses found</Text>
-          )}
-        </>
-      )}
+      <VirtualizedList
+        ref={listRef}
+        getItem={getItem}
+        getItemCount={() => totalItems}
+        keyExtractor={(item) => String(item.index)}
+        renderItem={renderItem}
+        initialNumToRender={PAGE_SIZE}
+        windowSize={5}
+        maxToRenderPerBatch={PAGE_SIZE}
+        updateCellsBatchingPeriod={50}
+        style={styles.list}
+        contentContainerStyle={styles.contentContainer}
+        removeClippedSubviews={false}
+        maintainVisibleContentPosition={{
+          minIndexForVisible: 0,
+        }}
+      />
     </SafeAreaView>
   );
 };
@@ -68,23 +123,13 @@ export const Customers = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    height: '100%',
   },
-  headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16,
+  list: {
+    flex: 1,
   },
-  header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  subheader: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginTop: 16,
-    marginBottom: 8,
+  contentContainer: {
+    paddingBottom: 20,
   },
   addressItem: {
     padding: 16,
@@ -92,18 +137,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
     borderRadius: 8,
   },
-  addressName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  error: {
-    color: 'red',
-    marginBottom: 16,
-  },
-  signOutButtonContainer: {
-    marginTop: 16,
-  },
+  addressName: { fontSize: 18, fontWeight: 'bold', marginBottom: 8 },
+  loadingText: { marginTop: 8 },
 });
 
 export default Customers;
